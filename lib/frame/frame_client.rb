@@ -1,30 +1,44 @@
 # frozen_string_literal: true
 
 module Frame
+  # HTTP client for making requests to the Frame Payments API.
+  #
+  # Handles connection management, request execution, and response processing.
+  # Automatically handles authentication, error parsing, and response formatting.
   class FrameClient
     attr_accessor :conn, :config
+
+    @default_client_mutex = Mutex.new
 
     def self.active_client
       Thread.current[:frame_client] || default_client
     end
 
     def self.default_client
-      @default_client ||= FrameClient.new(
-        api_key: Frame.api_key,
-        api_base: Frame.api_base,
-        open_timeout: Frame.open_timeout,
-        read_timeout: Frame.read_timeout,
-        verify_ssl_certs: Frame.verify_ssl_certs
-      )
+      return @default_client if @default_client
+
+      @default_client_mutex.synchronize do
+        @default_client ||= FrameClient.new(
+          api_key: Frame.api_key,
+          api_base: Frame.api_base,
+          open_timeout: Frame.open_timeout,
+          read_timeout: Frame.read_timeout,
+          verify_ssl_certs: Frame.verify_ssl_certs,
+          logger: Frame.logger,
+          log_level: Frame.log_level
+        )
+      end
     end
 
-    def initialize(api_key: nil, api_base: nil, open_timeout: nil, read_timeout: nil, verify_ssl_certs: nil)
+    def initialize(api_key: nil, api_base: nil, open_timeout: nil, read_timeout: nil, verify_ssl_certs: nil, logger: nil, log_level: nil)
       @config = {
         api_key: api_key || Frame.api_key,
         api_base: api_base || Frame.api_base,
         open_timeout: open_timeout || Frame.open_timeout,
         read_timeout: read_timeout || Frame.read_timeout,
-        verify_ssl_certs: verify_ssl_certs.nil? ? Frame.verify_ssl_certs : verify_ssl_certs
+        verify_ssl_certs: verify_ssl_certs.nil? ? Frame.verify_ssl_certs : verify_ssl_certs,
+        logger: logger || Frame.logger,
+        log_level: log_level || Frame.log_level
       }
 
       @conn = create_connection
@@ -49,19 +63,31 @@ module Frame
         faraday.response :json, content_type: /\bjson$/
         faraday.adapter Faraday.default_adapter
 
+        # SSL verification setting
+        faraday.ssl.verify = @config[:verify_ssl_certs]
+
         faraday.options.timeout = @config[:read_timeout]
         faraday.options.open_timeout = @config[:open_timeout]
       end
     end
 
     def execute_request(method, path, params, opts)
+      unless @config[:api_key]
+        raise AuthenticationError.new(
+          "API key is required. Set Frame.api_key before making requests.",
+          http_status: nil
+        )
+      end
+
       headers = {
         "Authorization" => "Bearer #{@config[:api_key]}",
         "Content-Type" => "application/json",
         "User-Agent" => "FrameRuby/#{Frame::VERSION}"
       }
 
-      case method.to_s.downcase.to_sym
+      log_request(method, path, params, headers) if should_log?
+
+      response = case method.to_s.downcase.to_sym
       when :get
         @conn.get(path) do |req|
           req.params = params
@@ -85,6 +111,10 @@ module Frame
       else
         raise APIConnectionError.new("Unrecognized HTTP method: #{method}")
       end
+
+      log_response(response) if should_log?
+
+      response
     end
 
     def process_response(response)
@@ -128,6 +158,51 @@ module Frame
       end
 
       parsed_response
+    end
+
+    def should_log?
+      @config[:logger] && @config[:log_level]
+    end
+
+    def log_request(method, path, params, headers)
+      return unless should_log?
+
+      sanitized_headers = headers.dup
+      sanitized_headers["Authorization"] = "Bearer [REDACTED]" if sanitized_headers["Authorization"]
+
+      sanitized_params = sanitize_sensitive_data(params)
+
+      @config[:logger].public_send(@config[:log_level], "[Frame] #{method.to_s.upcase} #{path}")
+      @config[:logger].public_send(@config[:log_level], "[Frame] Headers: #{sanitized_headers.inspect}")
+      @config[:logger].public_send(@config[:log_level], "[Frame] Params: #{sanitized_params.inspect}") unless sanitized_params.empty?
+    end
+
+    def log_response(response)
+      return unless should_log?
+
+      @config[:logger].public_send(@config[:log_level], "[Frame] Response: #{response.status} #{response.reason_phrase}")
+      if response.body && response.body.is_a?(Hash)
+        sanitized_body = sanitize_sensitive_data(response.body)
+        @config[:logger].public_send(@config[:log_level], "[Frame] Body: #{sanitized_body.inspect}")
+      end
+    end
+
+    def sanitize_sensitive_data(data)
+      return data unless data.is_a?(Hash)
+
+      sensitive_keys = %w[api_key secret key password card_number cvc cvv number]
+      data.each_with_object({}) do |(key, value), sanitized|
+        key_str = key.to_s.downcase
+        if sensitive_keys.any? { |sensitive| key_str.include?(sensitive) }
+          sanitized[key] = "[REDACTED]"
+        elsif value.is_a?(Hash)
+          sanitized[key] = sanitize_sensitive_data(value)
+        elsif value.is_a?(Array)
+          sanitized[key] = value.map { |v| v.is_a?(Hash) ? sanitize_sensitive_data(v) : v }
+        else
+          sanitized[key] = value
+        end
+      end
     end
   end
 end

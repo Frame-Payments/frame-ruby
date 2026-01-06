@@ -1,0 +1,11 @@
+{
+  "id": "civ_1234567890abcdef",
+  "created": 1736995552,
+  "updated": 1736995552,
+  "livemode": false,
+  "customer": "55435398-ec47-4bb4-ac9e-64031481cf48",
+  "status": "pending",
+  "type": "identity_document",
+  "metadata": {},
+  "object": "customer_identity_verification"
+}

@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "page": 1,
+    "url": "/v1/products",
+    "has_more": false,
+    "prev": null,
+    "next": null
+  },
+  "data": [
+    {
+      "id": "prod_1234567890abcdef",
+      "created": 1736995552,
+      "updated": 1736995552,
+      "livemode": false,
+      "name": "Premium Plan",
+      "description": "A premium subscription plan",
+      "active": true,
+      "metadata": {},
+      "object": "product"
+    },
+    {
+      "id": "prod_abcdef1234567890",
+      "created": 1736995400,
+      "updated": 1736995400,
+      "livemode": false,
+      "name": "Basic Plan",
+      "description": "A basic subscription plan",
+      "active": true,
+      "metadata": {},
+      "object": "product"
+    }
+  ]
+}

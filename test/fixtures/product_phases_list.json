@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "page": 1,
+    "url": "/v1/product_phases",
+    "has_more": false,
+    "prev": null,
+    "next": null
+  },
+  "data": [
+    {
+      "id": "pph_1234567890abcdef",
+      "created": 1736995552,
+      "updated": 1736995552,
+      "livemode": false,
+      "product": "prod_1234567890abcdef",
+      "price": 10000,
+      "currency": "usd",
+      "interval": "month",
+      "interval_count": 1,
+      "metadata": {},
+      "object": "product_phase"
+    },
+    {
+      "id": "pph_abcdef1234567890",
+      "created": 1736995500,
+      "updated": 1736995500,
+      "livemode": false,
+      "product": "prod_1234567890abcdef",
+      "price": 20000,
+      "currency": "usd",
+      "interval": "year",
+      "interval_count": 1,
+      "metadata": {},
+      "object": "product_phase"
+    }
+  ]
+}

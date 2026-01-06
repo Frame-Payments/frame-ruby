@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "page": 1,
+    "url": "/v1/webhook_endpoints",
+    "has_more": false,
+    "prev": null,
+    "next": null
+  },
+  "data": [
+    {
+      "id": "we_1234567890abcdef",
+      "created": 1736995552,
+      "updated": 1736995552,
+      "livemode": false,
+      "url": "https://example.com/webhook",
+      "enabled": true,
+      "events": ["charge.succeeded", "charge.failed"],
+      "metadata": {},
+      "object": "webhook_endpoint"
+    },
+    {
+      "id": "we_abcdef1234567890",
+      "created": 1736995400,
+      "updated": 1736995400,
+      "livemode": false,
+      "url": "https://another-example.com/webhook",
+      "enabled": false,
+      "events": ["subscription.created"],
+      "metadata": {},
+      "object": "webhook_endpoint"
+    }
+  ]
+}

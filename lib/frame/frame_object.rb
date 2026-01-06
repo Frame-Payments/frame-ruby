@@ -1,6 +1,18 @@
 # frozen_string_literal: true
 
 module Frame
+  # Base object class for all Frame API responses.
+  #
+  # FrameObject provides dynamic attribute access and JSON serialization
+  # for API responses. All API resources inherit from this class.
+  #
+  # Attributes are dynamically created based on the API response, allowing
+  # for flexible access to all fields:
+  #
+  #   customer.name  # => "John Doe"
+  #   customer["name"]  # => "John Doe"
+  #   customer[:name]  # => "John Doe"
+  #
   class FrameObject
     include Enumerable
 

@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "page": 1,
+    "url": "/v1/subscriptions",
+    "has_more": false,
+    "prev": null,
+    "next": null
+  },
+  "data": [
+    {
+      "id": "sub_1234567890abcdef",
+      "created": 1736995552,
+      "updated": 1736995552,
+      "livemode": false,
+      "customer": "55435398-ec47-4bb4-ac9e-64031481cf48",
+      "status": "active",
+      "current_period_start": 1736995552,
+      "current_period_end": 1739677552,
+      "cancel_at_period_end": false,
+      "metadata": {},
+      "object": "subscription"
+    },
+    {
+      "id": "sub_abcdef1234567890",
+      "created": 1736995400,
+      "updated": 1736995450,
+      "livemode": false,
+      "customer": "66543210-ab12-3cd4-ef56-789012345678",
+      "status": "paused",
+      "current_period_start": 1736995400,
+      "current_period_end": 1739677400,
+      "cancel_at_period_end": false,
+      "metadata": {},
+      "object": "subscription"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "page": 1,
+    "url": "/v1/refunds",
+    "has_more": false,
+    "prev": null,
+    "next": null
+  },
+  "data": [
+    {
+      "id": "rf_1234567890abcdef",
+      "created": 1736995552,
+      "updated": 1736995552,
+      "livemode": false,
+      "amount": 5000,
+      "currency": "usd",
+      "status": "pending",
+      "charge": "ch_1234567890abcdef",
+      "reason": null,
+      "metadata": {},
+      "object": "refund"
+    },
+    {
+      "id": "rf_abcdef1234567890",
+      "created": 1736995400,
+      "updated": 1736995450,
+      "livemode": false,
+      "amount": 10000,
+      "currency": "usd",
+      "status": "succeeded",
+      "charge": "ch_abcdef1234567890",
+      "reason": "requested_by_customer",
+      "metadata": {},
+      "object": "refund"
+    }
+  ]
+}

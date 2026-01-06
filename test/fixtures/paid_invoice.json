@@ -1,0 +1,16 @@
+{
+  "id": "inv_1234567890abcdef",
+  "created": 1736995552,
+  "updated": 1736995650,
+  "livemode": false,
+  "customer": "55435398-ec47-4bb4-ac9e-64031481cf48",
+  "status": "paid",
+  "total": 10000,
+  "subtotal": 10000,
+  "tax": 0,
+  "currency": "usd",
+  "due_date": 1737081800,
+  "paid_at": 1736995650,
+  "metadata": {},
+  "object": "invoice"
+}

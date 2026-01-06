@@ -1,0 +1,11 @@
+{
+  "id": "we_1234567890abcdef",
+  "created": 1736995552,
+  "updated": 1736995650,
+  "livemode": false,
+  "url": "https://example.com/webhook",
+  "enabled": false,
+  "events": ["charge.succeeded", "charge.failed"],
+  "metadata": {},
+  "object": "webhook_endpoint"
+}

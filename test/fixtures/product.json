@@ -1,0 +1,11 @@
+{
+  "id": "prod_1234567890abcdef",
+  "created": 1736995552,
+  "updated": 1736995552,
+  "livemode": false,
+  "name": "Premium Plan",
+  "description": "A premium subscription plan",
+  "active": true,
+  "metadata": {},
+  "object": "product"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "pph_1234567890abcdef",
+  "created": 1736995552,
+  "updated": 1736995552,
+  "livemode": false,
+  "product": "prod_1234567890abcdef",
+  "price": 10000,
+  "currency": "usd",
+  "interval": "month",
+  "interval_count": 1,
+  "metadata": {},
+  "object": "product_phase"
+}

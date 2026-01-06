@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "page": 1,
+    "url": "/v1/charge_intents",
+    "has_more": false,
+    "prev": null,
+    "next": null
+  },
+  "data": [
+    {
+      "id": "ci_1234567890abcdef",
+      "created": 1736995552,
+      "updated": 1736995552,
+      "livemode": false,
+      "amount": 10000,
+      "currency": "usd",
+      "status": "pending",
+      "payment_method": null,
+      "customer": null,
+      "description": "Test charge intent",
+      "metadata": {},
+      "object": "charge_intent"
+    },
+    {
+      "id": "ci_abcdef1234567890",
+      "created": 1736995400,
+      "updated": 1736995400,
+      "livemode": false,
+      "amount": 20000,
+      "currency": "usd",
+      "status": "succeeded",
+      "payment_method": null,
+      "customer": null,
+      "description": "Another charge intent",
+      "metadata": {},
+      "object": "charge_intent"
+    }
+  ]
+}

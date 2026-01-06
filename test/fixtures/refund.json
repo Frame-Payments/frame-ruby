@@ -1,0 +1,13 @@
+{
+  "id": "rf_1234567890abcdef",
+  "created": 1736995552,
+  "updated": 1736995552,
+  "livemode": false,
+  "amount": 5000,
+  "currency": "usd",
+  "status": "pending",
+  "charge": "ch_1234567890abcdef",
+  "reason": null,
+  "metadata": {},
+  "object": "refund"
+}

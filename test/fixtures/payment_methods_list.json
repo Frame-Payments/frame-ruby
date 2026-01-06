@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "page": 1,
+    "url": "/v1/payment_methods",
+    "has_more": false,
+    "prev": null,
+    "next": null
+  },
+  "data": [
+    {
+      "id": "pm_1234567890abcdef",
+      "created": 1736995552,
+      "updated": 1736995552,
+      "livemode": false,
+      "type": "card",
+      "card": {
+        "brand": "visa",
+        "last4": "4242",
+        "exp_month": 12,
+        "exp_year": 2025
+      },
+      "customer": null,
+      "metadata": {},
+      "object": "payment_method"
+    },
+    {
+      "id": "pm_abcdef1234567890",
+      "created": 1736995400,
+      "updated": 1736995400,
+      "livemode": false,
+      "type": "card",
+      "card": {
+        "brand": "mastercard",
+        "last4": "5555",
+        "exp_month": 11,
+        "exp_year": 2026
+      },
+      "customer": null,
+      "metadata": {},
+      "object": "payment_method"
+    }
+  ]
+}

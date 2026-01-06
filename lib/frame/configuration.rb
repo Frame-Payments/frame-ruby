@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 module Frame
+  # Configuration management for the Frame SDK.
+  #
+  # Handles API keys, base URLs, timeouts, and other SDK settings.
+  # Typically accessed through the Frame module methods like Frame.api_key.
   class Configuration
     DEFAULT_API_BASE = "https://api.framepayments.com"
     DEFAULT_OPEN_TIMEOUT = 30

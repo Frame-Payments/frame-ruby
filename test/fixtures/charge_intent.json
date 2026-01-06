@@ -1,0 +1,14 @@
+{
+  "id": "ci_1234567890abcdef",
+  "created": 1736995552,
+  "updated": 1736995552,
+  "livemode": false,
+  "amount": 10000,
+  "currency": "usd",
+  "status": "pending",
+  "payment_method": null,
+  "customer": null,
+  "description": "Test charge intent",
+  "metadata": {},
+  "object": "charge_intent"
+}

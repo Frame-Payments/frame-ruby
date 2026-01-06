@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "page": 1,
+    "url": "/v1/customer_identity_verifications",
+    "has_more": false,
+    "prev": null,
+    "next": null
+  },
+  "data": [
+    {
+      "id": "civ_1234567890abcdef",
+      "created": 1736995552,
+      "updated": 1736995552,
+      "livemode": false,
+      "customer": "55435398-ec47-4bb4-ac9e-64031481cf48",
+      "status": "pending",
+      "type": "identity_document",
+      "metadata": {},
+      "object": "customer_identity_verification"
+    },
+    {
+      "id": "civ_abcdef1234567890",
+      "created": 1736995400,
+      "updated": 1736995450,
+      "livemode": false,
+      "customer": "66543210-ab12-3cd4-ef56-789012345678",
+      "status": "verified",
+      "type": "identity_document",
+      "metadata": {},
+      "object": "customer_identity_verification"
+    }
+  ]
+}

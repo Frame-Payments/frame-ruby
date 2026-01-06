@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "page": 1,
+    "url": "/v1/subscription_phases",
+    "has_more": false,
+    "prev": null,
+    "next": null
+  },
+  "data": [
+    {
+      "id": "sph_1234567890abcdef",
+      "created": 1736995552,
+      "updated": 1736995552,
+      "livemode": false,
+      "subscription": "sub_1234567890abcdef",
+      "start_date": 1736995552,
+      "end_date": 1739677552,
+      "metadata": {},
+      "object": "subscription_phase"
+    },
+    {
+      "id": "sph_abcdef1234567890",
+      "created": 1736995500,
+      "updated": 1736995500,
+      "livemode": false,
+      "subscription": "sub_1234567890abcdef",
+      "start_date": 1739677552,
+      "end_date": 1742359552,
+      "metadata": {},
+      "object": "subscription_phase"
+    }
+  ]
+}

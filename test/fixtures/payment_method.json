@@ -1,0 +1,16 @@
+{
+  "id": "pm_1234567890abcdef",
+  "created": 1736995552,
+  "updated": 1736995552,
+  "livemode": false,
+  "type": "card",
+  "card": {
+    "brand": "visa",
+    "last4": "4242",
+    "exp_month": 12,
+    "exp_year": 2025
+  },
+  "customer": null,
+  "metadata": {},
+  "object": "payment_method"
+}

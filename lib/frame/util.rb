@@ -3,8 +3,18 @@
 module Frame
   module Util
     OBJECT_CLASSES = {
-      # Additional classes will be added as they're implemented
       "customer" => "Customer",
+      "charge_intent" => "ChargeIntent",
+      "payment_method" => "PaymentMethod",
+      "refund" => "Refund",
+      "invoice" => "Invoice",
+      "invoice_line_item" => "InvoiceLineItem",
+      "subscription" => "Subscription",
+      "subscription_phase" => "SubscriptionPhase",
+      "product" => "Product",
+      "product_phase" => "ProductPhase",
+      "webhook_endpoint" => "WebhookEndpoint",
+      "customer_identity_verification" => "CustomerIdentityVerification",
       "list" => "ListObject"
     }.freeze
 
