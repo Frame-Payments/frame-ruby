@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    frame (0.1.0)
+    frame_payments (0.1.0)
       faraday (~> 2.0)
 
 GEM
@@ -101,7 +101,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
-  frame!
+  frame_payments!
   irb
   minitest (~> 5.16)
   rake (~> 13.0)
