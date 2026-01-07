@@ -193,14 +193,14 @@ module Frame
       sensitive_keys = %w[api_key secret key password card_number cvc cvv number]
       data.each_with_object({}) do |(key, value), sanitized|
         key_str = key.to_s.downcase
-        if sensitive_keys.any? { |sensitive| key_str.include?(sensitive) }
-          sanitized[key] = "[REDACTED]"
+        sanitized[key] = if sensitive_keys.any? { |sensitive| key_str.include?(sensitive) }
+          "[REDACTED]"
         elsif value.is_a?(Hash)
-          sanitized[key] = sanitize_sensitive_data(value)
+          sanitize_sensitive_data(value)
         elsif value.is_a?(Array)
-          sanitized[key] = value.map { |v| v.is_a?(Hash) ? sanitize_sensitive_data(v) : v }
+          value.map { |v| v.is_a?(Hash) ? sanitize_sensitive_data(v) : v }
         else
-          sanitized[key] = value
+          value
         end
       end
     end

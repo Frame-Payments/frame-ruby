@@ -81,7 +81,7 @@ module Frame
       request_object(
         :post,
         "/v1/payment_methods/#{CGI.escape(self["id"])}/attach",
-        { customer: customer_id }.merge(params),
+        {customer: customer_id}.merge(params),
         opts
       )
     end
@@ -90,7 +90,7 @@ module Frame
       request_object(
         :post,
         "/v1/payment_methods/#{CGI.escape(id)}/attach",
-        { customer: customer_id }.merge(params),
+        {customer: customer_id}.merge(params),
         opts
       )
     end
