@@ -3,22 +3,22 @@
 require_relative "lib/frame/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "frame"
+  spec.name = "frame_payments"
   spec.version = Frame::VERSION
-  spec.authors = ["Sean Winner"]
-  spec.email = ["srwinner16@gmail.com"]
+  spec.authors = ["Frame Payments"]
+  spec.email = ["support@framepayments.com"]
 
   spec.summary = "Ruby bindings for the Frame Payments API"
   spec.description = "A Ruby library for Frame Payments API that provides a convenient interface for making requests and handling responses."
-  spec.homepage = "https://github.com/seanwinner/frame"
+  spec.homepage = "https://github.com/framepayments/frame-ruby"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.1.0"
 
   # spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/seanwinner/frame"
-  spec.metadata["changelog_uri"] = "https://github.com/seanwinner/frame/blob/main/CHANGELOG.md"
+  spec.metadata["source_code_uri"] = "https://github.com/framepayments/frame-ruby"
+  spec.metadata["changelog_uri"] = "https://github.com/framepayments/frame-ruby/blob/main/CHANGELOG.md"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.

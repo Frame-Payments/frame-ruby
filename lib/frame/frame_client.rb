@@ -181,7 +181,7 @@ module Frame
       return unless should_log?
 
       @config[:logger].public_send(@config[:log_level], "[Frame] Response: #{response.status} #{response.reason_phrase}")
-      if response.body && response.body.is_a?(Hash)
+      if response.body&.is_a?(Hash)
         sanitized_body = sanitize_sensitive_data(response.body)
         @config[:logger].public_send(@config[:log_level], "[Frame] Body: #{sanitized_body.inspect}")
       end

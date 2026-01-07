@@ -7,7 +7,7 @@ A Ruby library for the Frame Payments API.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'frame'
+gem 'frame_payments'
 ```
 
 And then execute:
@@ -19,15 +19,17 @@ bundle install
 Or install it yourself as:
 
 ```bash
-gem install frame
+gem install frame_payments
 ```
 
 ## Usage
 
+> Note: The gem name is `frame_payments`, but the Ruby namespace is `Frame`.
+
 The library needs to be configured with your Frame API key:
 
 ```ruby
-require 'frame'
+require 'frame_payments'
 Frame.api_key = 'your_api_key'
 ```
 
@@ -414,7 +416,7 @@ Frame.api_key = 'sk_live_1234567890abcdef'
 Frame.api_key = ENV['FRAME_API_KEY']
 
 # ✅ GOOD - Use Rails credentials (Rails apps)
-Frame.api_key = Rails.application.credentials.frame[:api_key]
+Frame.api_key = Rails.application.credentials.frame_payments[:api_key]
 
 # ✅ GOOD - Use a secrets management service
 Frame.api_key = SecretsManager.get('frame_api_key')
