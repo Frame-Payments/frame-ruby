@@ -1,4 +1,4 @@
-# Frame Payments Ruby Library
+# Frame Payments - Ruby SDK
 
 A Ruby library for the Frame Payments API.
 
