@@ -41,6 +41,26 @@ class TestChargeIntent < Minitest::Test
     assert_equal "charge_intent", charge_intent.object
   end
 
+  def test_create_charge_intent_with_sonar_session_id
+    stub_api_request(
+      :post,
+      "/v1/charge_intents",
+      "charge_intent.json"
+    )
+
+    Frame::ChargeIntent.create(
+      amount: 10000,
+      currency: "usd",
+      description: "Test charge intent",
+      sonar_session_id: "fps_sandbox_01H8X9Y2Z3A4B5C6D7E8F9G0H1"
+    )
+
+    assert_requested :post, "#{Frame.api_base}/v1/charge_intents", times: 1 do |req|
+      body = JSON.parse(req.body)
+      body["sonar_session_id"] == "fps_sandbox_01H8X9Y2Z3A4B5C6D7E8F9G0H1"
+    end
+  end
+
   def test_update_charge_intent
     charge_intent_id = "ci_1234567890abcdef"
 

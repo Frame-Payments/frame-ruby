@@ -133,6 +133,8 @@ charge_intent = Frame::ChargeIntent.create(
 )
 ```
 
+Optional: include `sonar_session_id` (string) when creating a charge intent to link the transaction to a Frame Sonar session for fraud protection (e.g. the value from `frame_charge_session_id` in client storage). See [Frame Sonar documentation](https://docs.framepayments.com/guides/sonar-fraud-protection).
+
 **Retrieve, list, and update:**
 
 ```ruby
