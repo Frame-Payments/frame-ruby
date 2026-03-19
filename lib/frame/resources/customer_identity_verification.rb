@@ -39,19 +39,19 @@ module Frame
       )
     end
 
-    def verify(params = {}, opts = {})
+    def upload_documents(params = {}, opts = {})
       request_object(
         :post,
-        "/v1/customer_identity_verifications/#{CGI.escape(self["id"])}/verify",
+        "/v1/customer_identity_verifications/#{CGI.escape(self["id"])}/upload_documents",
         params,
         opts
       )
     end
 
-    def self.verify(id, params = {}, opts = {})
+    def self.upload_documents(id, params = {}, opts = {})
       request_object(
         :post,
-        "/v1/customer_identity_verifications/#{CGI.escape(id)}/verify",
+        "/v1/customer_identity_verifications/#{CGI.escape(id)}/upload_documents",
         params,
         opts
       )

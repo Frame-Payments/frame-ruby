@@ -112,5 +112,41 @@ module Frame
         opts
       )
     end
+
+    def block(params = {}, opts = {})
+      request_object(
+        :post,
+        "/v1/payment_methods/#{CGI.escape(self["id"])}/block",
+        params,
+        opts
+      )
+    end
+
+    def self.block(id, params = {}, opts = {})
+      request_object(
+        :post,
+        "/v1/payment_methods/#{CGI.escape(id)}/block",
+        params,
+        opts
+      )
+    end
+
+    def unblock(params = {}, opts = {})
+      request_object(
+        :post,
+        "/v1/payment_methods/#{CGI.escape(self["id"])}/unblock",
+        params,
+        opts
+      )
+    end
+
+    def self.unblock(id, params = {}, opts = {})
+      request_object(
+        :post,
+        "/v1/payment_methods/#{CGI.escape(id)}/unblock",
+        params,
+        opts
+      )
+    end
   end
 end

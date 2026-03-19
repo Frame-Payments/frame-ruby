@@ -13,38 +13,37 @@ module Frame
       OBJECT_NAME
     end
 
-    def self.create(params = {}, opts = {})
+    def self.create(subscription_id, params = {}, opts = {})
       request_object(
         :post,
-        "/v1/subscription_phases",
+        "/v1/subscriptions/#{CGI.escape(subscription_id)}/phases",
         params,
         opts
       )
     end
 
-    def self.list(params = {}, opts = {})
+    def self.list(subscription_id, params = {}, opts = {})
       request_object(
         :get,
-        "/v1/subscription_phases",
+        "/v1/subscriptions/#{CGI.escape(subscription_id)}/phases",
         params,
         opts
       )
     end
 
-    def self.retrieve(id, opts = {})
-      id = Util.normalize_id(id)
+    def self.retrieve(subscription_id, id, opts = {})
       request_object(
         :get,
-        "/v1/subscription_phases/#{CGI.escape(id)}",
+        "/v1/subscriptions/#{CGI.escape(subscription_id)}/phases/#{CGI.escape(id)}",
         {},
         opts
       )
     end
 
-    def self.delete(id, params = {}, opts = {})
+    def self.delete(subscription_id, id, params = {}, opts = {})
       request_object(
         :delete,
-        "/v1/subscription_phases/#{CGI.escape(id)}",
+        "/v1/subscriptions/#{CGI.escape(subscription_id)}/phases/#{CGI.escape(id)}",
         params,
         opts
       )
@@ -59,7 +58,7 @@ module Frame
 
       updated = request_object(
         :patch,
-        "/v1/subscription_phases/#{CGI.escape(self["id"])}",
+        "/v1/subscriptions/#{CGI.escape(self["subscription"])}/phases/#{CGI.escape(self["id"])}",
         values,
         opts
       )
@@ -71,7 +70,7 @@ module Frame
     def delete(params = {}, opts = {})
       request_object(
         :delete,
-        "/v1/subscription_phases/#{CGI.escape(self["id"])}",
+        "/v1/subscriptions/#{CGI.escape(self["subscription"])}/phases/#{CGI.escape(self["id"])}",
         params,
         opts
       )

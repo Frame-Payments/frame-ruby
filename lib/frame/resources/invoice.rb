@@ -77,55 +77,19 @@ module Frame
       )
     end
 
-    def finalize(params = {}, opts = {})
+    def issue(params = {}, opts = {})
       request_object(
         :post,
-        "/v1/invoices/#{CGI.escape(self["id"])}/finalize",
+        "/v1/invoices/#{CGI.escape(self["id"])}/issue",
         params,
         opts
       )
     end
 
-    def self.finalize(id, params = {}, opts = {})
+    def self.issue(id, params = {}, opts = {})
       request_object(
         :post,
-        "/v1/invoices/#{CGI.escape(id)}/finalize",
-        params,
-        opts
-      )
-    end
-
-    def pay(params = {}, opts = {})
-      request_object(
-        :post,
-        "/v1/invoices/#{CGI.escape(self["id"])}/pay",
-        params,
-        opts
-      )
-    end
-
-    def self.pay(id, params = {}, opts = {})
-      request_object(
-        :post,
-        "/v1/invoices/#{CGI.escape(id)}/pay",
-        params,
-        opts
-      )
-    end
-
-    def void(params = {}, opts = {})
-      request_object(
-        :post,
-        "/v1/invoices/#{CGI.escape(self["id"])}/void",
-        params,
-        opts
-      )
-    end
-
-    def self.void(id, params = {}, opts = {})
-      request_object(
-        :post,
-        "/v1/invoices/#{CGI.escape(id)}/void",
+        "/v1/invoices/#{CGI.escape(id)}/issue",
         params,
         opts
       )
