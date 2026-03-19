@@ -52,5 +52,8 @@ require "frame/resources/transfer"
 require "frame/resources/transfer_billing_agreement"
 require "frame/resources/transfer_fee_plan"
 
+# Terms of Service
+require "frame/resources/terms_of_service"
+
 # Webhooks
 require "frame/resources/webhook_endpoint"
