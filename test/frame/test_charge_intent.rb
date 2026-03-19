@@ -119,7 +119,7 @@ class TestChargeIntent < Minitest::Test
       times: 1
   end
 
-  def test_authorize_charge_intent
+  def test_confirm_charge_intent
     charge_intent_id = "ci_1234567890abcdef"
 
     # Stub retrieve request
@@ -129,20 +129,20 @@ class TestChargeIntent < Minitest::Test
       "charge_intent.json"
     )
 
-    # Stub authorize request
+    # Stub confirm request
     stub_api_request(
       :post,
-      "/v1/charge_intents/#{charge_intent_id}/authorize",
+      "/v1/charge_intents/#{charge_intent_id}/confirm",
       "authorized_charge_intent.json"
     )
 
     charge_intent = Frame::ChargeIntent.retrieve(charge_intent_id)
-    authorized_intent = charge_intent.authorize
+    confirmed_intent = charge_intent.confirm
 
-    assert_equal charge_intent_id, authorized_intent.id
-    assert_equal "authorized", authorized_intent.status
+    assert_equal charge_intent_id, confirmed_intent.id
+    assert_equal "authorized", confirmed_intent.status
 
-    assert_requested :post, "#{Frame.api_base}/v1/charge_intents/#{charge_intent_id}/authorize", times: 1
+    assert_requested :post, "#{Frame.api_base}/v1/charge_intents/#{charge_intent_id}/confirm", times: 1
   end
 
   def test_capture_charge_intent

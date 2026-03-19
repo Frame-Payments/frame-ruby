@@ -40,19 +40,19 @@ module Frame
       )
     end
 
-    def authorize(params = {}, opts = {})
+    def confirm(params = {}, opts = {})
       request_object(
         :post,
-        "/v1/charge_intents/#{CGI.escape(self["id"])}/authorize",
+        "/v1/charge_intents/#{CGI.escape(self["id"])}/confirm",
         params,
         opts
       )
     end
 
-    def self.authorize(id, params = {}, opts = {})
+    def self.confirm(id, params = {}, opts = {})
       request_object(
         :post,
-        "/v1/charge_intents/#{CGI.escape(id)}/authorize",
+        "/v1/charge_intents/#{CGI.escape(id)}/confirm",
         params,
         opts
       )
@@ -89,6 +89,24 @@ module Frame
       request_object(
         :post,
         "/v1/charge_intents/#{CGI.escape(id)}/cancel",
+        params,
+        opts
+      )
+    end
+
+    def void_remaining(params = {}, opts = {})
+      request_object(
+        :post,
+        "/v1/charge_intents/#{CGI.escape(self["id"])}/void_remaining",
+        params,
+        opts
+      )
+    end
+
+    def self.void_remaining(id, params = {}, opts = {})
+      request_object(
+        :post,
+        "/v1/charge_intents/#{CGI.escape(id)}/void_remaining",
         params,
         opts
       )

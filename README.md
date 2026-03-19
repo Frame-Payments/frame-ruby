@@ -149,13 +149,14 @@ intent.description = 'Updated description'
 intent.save
 ```
 
-**Authorize, capture, or cancel:**
+**Confirm, capture, or cancel:**
 
 ```ruby
 intent = Frame::ChargeIntent.retrieve('ci_123456789')
-intent.authorize  # Authorize the payment
+intent.confirm    # Confirm the payment
 intent.capture    # Capture the authorized amount
 intent.cancel     # Cancel the intent
+intent.void_remaining  # Void any remaining uncaptured amount
 ```
 
 ### Payment Methods
@@ -233,19 +234,11 @@ invoice = Frame::Invoice.create(
 )
 ```
 
-**Manage invoice lifecycle:**
+**Issue an invoice:**
 
 ```ruby
 invoice = Frame::Invoice.retrieve('inv_123456789')
-
-# Finalize (make it payable)
-invoice.finalize
-
-# Mark as paid
-invoice.pay(payment_method: 'pm_123456789')
-
-# Void
-invoice.void
+invoice.issue
 ```
 
 **List invoices:**
@@ -259,8 +252,7 @@ invoices = Frame::Invoice.list(customer: 'cus_123456789', status: 'paid')
 **Create a line item:**
 
 ```ruby
-line_item = Frame::InvoiceLineItem.create(
-  invoice: 'inv_123456789',
+line_item = Frame::InvoiceLineItem.create('inv_123456789',
   description: 'Product or service',
   quantity: 2,
   unit_amount: 5000
@@ -287,18 +279,10 @@ subscription = Frame::Subscription.create(
 )
 ```
 
-**Manage subscription:**
+**Cancel a subscription:**
 
 ```ruby
 subscription = Frame::Subscription.retrieve('sub_123456789')
-
-# Pause
-subscription.pause
-
-# Resume
-subscription.resume
-
-# Cancel
 subscription.cancel
 ```
 
@@ -331,8 +315,7 @@ products = Frame::Product.list(active: true)
 **Create a product phase:**
 
 ```ruby
-phase = Frame::ProductPhase.create(
-  product: 'prod_123456789',
+phase = Frame::ProductPhase.create('prod_123456789',
   price: 10000,
   currency: 'usd',
   interval: 'month',
@@ -375,10 +358,10 @@ verification = Frame::CustomerIdentityVerification.create(
 )
 ```
 
-**Verify:**
+**Upload documents:**
 
 ```ruby
-verification.verify
+verification.upload_documents(documents: [...])
 ```
 
 **List verifications:**

@@ -13,38 +13,37 @@ module Frame
       OBJECT_NAME
     end
 
-    def self.create(params = {}, opts = {})
+    def self.create(product_id, params = {}, opts = {})
       request_object(
         :post,
-        "/v1/product_phases",
+        "/v1/products/#{CGI.escape(product_id)}/phases",
         params,
         opts
       )
     end
 
-    def self.list(params = {}, opts = {})
+    def self.list(product_id, params = {}, opts = {})
       request_object(
         :get,
-        "/v1/product_phases",
+        "/v1/products/#{CGI.escape(product_id)}/phases",
         params,
         opts
       )
     end
 
-    def self.retrieve(id, opts = {})
-      id = Util.normalize_id(id)
+    def self.retrieve(product_id, id, opts = {})
       request_object(
         :get,
-        "/v1/product_phases/#{CGI.escape(id)}",
+        "/v1/products/#{CGI.escape(product_id)}/phases/#{CGI.escape(id)}",
         {},
         opts
       )
     end
 
-    def self.delete(id, params = {}, opts = {})
+    def self.delete(product_id, id, params = {}, opts = {})
       request_object(
         :delete,
-        "/v1/product_phases/#{CGI.escape(id)}",
+        "/v1/products/#{CGI.escape(product_id)}/phases/#{CGI.escape(id)}",
         params,
         opts
       )
@@ -59,7 +58,7 @@ module Frame
 
       updated = request_object(
         :patch,
-        "/v1/product_phases/#{CGI.escape(self["id"])}",
+        "/v1/products/#{CGI.escape(self["product"])}/phases/#{CGI.escape(self["id"])}",
         values,
         opts
       )
@@ -71,7 +70,7 @@ module Frame
     def delete(params = {}, opts = {})
       request_object(
         :delete,
-        "/v1/product_phases/#{CGI.escape(self["id"])}",
+        "/v1/products/#{CGI.escape(self["product"])}/phases/#{CGI.escape(self["id"])}",
         params,
         opts
       )

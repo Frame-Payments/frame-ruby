@@ -115,54 +115,6 @@ class TestSubscription < Minitest::Test
     assert_requested :post, "#{Frame.api_base}/v1/subscriptions/#{subscription_id}/cancel", times: 1
   end
 
-  def test_pause_subscription
-    subscription_id = "sub_1234567890abcdef"
-
-    stub_api_request(
-      :get,
-      "/v1/subscriptions/#{subscription_id}",
-      "subscription.json"
-    )
-
-    stub_api_request(
-      :post,
-      "/v1/subscriptions/#{subscription_id}/pause",
-      "paused_subscription.json"
-    )
-
-    subscription = Frame::Subscription.retrieve(subscription_id)
-    paused = subscription.pause
-
-    assert_equal subscription_id, paused.id
-    assert_equal "paused", paused.status
-
-    assert_requested :post, "#{Frame.api_base}/v1/subscriptions/#{subscription_id}/pause", times: 1
-  end
-
-  def test_resume_subscription
-    subscription_id = "sub_1234567890abcdef"
-
-    stub_api_request(
-      :get,
-      "/v1/subscriptions/#{subscription_id}",
-      "paused_subscription.json"
-    )
-
-    stub_api_request(
-      :post,
-      "/v1/subscriptions/#{subscription_id}/resume",
-      "resumed_subscription.json"
-    )
-
-    subscription = Frame::Subscription.retrieve(subscription_id)
-    resumed = subscription.resume
-
-    assert_equal subscription_id, resumed.id
-    assert_equal "active", resumed.status
-
-    assert_requested :post, "#{Frame.api_base}/v1/subscriptions/#{subscription_id}/resume", times: 1
-  end
-
   def test_delete_subscription
     subscription_id = "sub_1234567890abcdef"
 

@@ -7,14 +7,15 @@ class TestProductPhase < Minitest::Test
   include FrameTest::APIOperations
 
   def test_retrieve_product_phase
+    product_id = "prod_1234567890abcdef"
     phase_id = "pph_1234567890abcdef"
     stub_api_request(
       :get,
-      "/v1/product_phases/#{phase_id}",
+      "/v1/products/#{product_id}/phases/#{phase_id}",
       "product_phase.json"
     )
 
-    phase = Frame::ProductPhase.retrieve(phase_id)
+    phase = Frame::ProductPhase.retrieve(product_id, phase_id)
     assert_equal phase_id, phase.id
     assert_equal 10000, phase.price
     assert_equal "usd", phase.currency
@@ -23,14 +24,15 @@ class TestProductPhase < Minitest::Test
   end
 
   def test_create_product_phase
+    product_id = "prod_1234567890abcdef"
     stub_api_request(
       :post,
-      "/v1/product_phases",
+      "/v1/products/#{product_id}/phases",
       "product_phase.json"
     )
 
     phase = Frame::ProductPhase.create(
-      product: "prod_1234567890abcdef",
+      product_id,
       price: 10000,
       currency: "usd",
       interval: "month",
@@ -43,35 +45,37 @@ class TestProductPhase < Minitest::Test
   end
 
   def test_update_product_phase
+    product_id = "prod_1234567890abcdef"
     phase_id = "pph_1234567890abcdef"
 
     stub_api_request(
       :get,
-      "/v1/product_phases/#{phase_id}",
+      "/v1/products/#{product_id}/phases/#{phase_id}",
       "product_phase.json"
     )
 
     stub_api_request(
       :patch,
-      "/v1/product_phases/#{phase_id}",
+      "/v1/products/#{product_id}/phases/#{phase_id}",
       "product_phase.json"
     )
 
-    phase = Frame::ProductPhase.retrieve(phase_id)
+    phase = Frame::ProductPhase.retrieve(product_id, phase_id)
     phase.price = 15000
     phase.save
 
-    assert_requested :patch, "#{Frame.api_base}/v1/product_phases/#{phase_id}", times: 1
+    assert_requested :patch, "#{Frame.api_base}/v1/products/#{product_id}/phases/#{phase_id}", times: 1
   end
 
   def test_list_product_phases
+    product_id = "prod_1234567890abcdef"
     stub_api_request(
       :get,
-      "/v1/product_phases",
+      "/v1/products/#{product_id}/phases",
       "product_phases_list.json"
     )
 
-    phases = Frame::ProductPhase.list
+    phases = Frame::ProductPhase.list(product_id)
     assert_equal 2, phases.data.size
     assert_equal "pph_1234567890abcdef", phases.data.first.id
     assert_equal "month", phases.data.first.interval
@@ -83,36 +87,38 @@ class TestProductPhase < Minitest::Test
   end
 
   def test_list_product_phases_with_params
+    product_id = "prod_1234567890abcdef"
     stub_api_request(
       :get,
-      "/v1/product_phases",
+      "/v1/products/#{product_id}/phases",
       "product_phases_list.json",
       request_params: {page: 1, per_page: 20}
     )
 
-    phases = Frame::ProductPhase.list(page: 1, per_page: 20)
+    phases = Frame::ProductPhase.list(product_id, page: 1, per_page: 20)
 
     assert_equal 2, phases.data.size
-    assert_requested :get, "#{Frame.api_base}/v1/product_phases",
+    assert_requested :get, "#{Frame.api_base}/v1/products/#{product_id}/phases",
       query: {page: 1, per_page: 20},
       times: 1
   end
 
   def test_delete_product_phase
+    product_id = "prod_1234567890abcdef"
     phase_id = "pph_1234567890abcdef"
 
     stub_api_request(
       :delete,
-      "/v1/product_phases/#{phase_id}",
+      "/v1/products/#{product_id}/phases/#{phase_id}",
       "deleted_product_phase.json"
     )
 
-    deleted_phase = Frame::ProductPhase.delete(phase_id)
+    deleted_phase = Frame::ProductPhase.delete(product_id, phase_id)
 
     assert_equal phase_id, deleted_phase.id
     assert_equal true, deleted_phase.deleted
     assert_equal "product_phase", deleted_phase.object
 
-    assert_requested :delete, "#{Frame.api_base}/v1/product_phases/#{phase_id}", times: 1
+    assert_requested :delete, "#{Frame.api_base}/v1/products/#{product_id}/phases/#{phase_id}", times: 1
   end
 end

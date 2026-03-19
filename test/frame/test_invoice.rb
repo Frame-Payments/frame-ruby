@@ -97,7 +97,7 @@ class TestInvoice < Minitest::Test
       times: 1
   end
 
-  def test_finalize_invoice
+  def test_issue_invoice
     invoice_id = "inv_1234567890abcdef"
 
     stub_api_request(
@@ -108,65 +108,17 @@ class TestInvoice < Minitest::Test
 
     stub_api_request(
       :post,
-      "/v1/invoices/#{invoice_id}/finalize",
+      "/v1/invoices/#{invoice_id}/issue",
       "finalized_invoice.json"
     )
 
     invoice = Frame::Invoice.retrieve(invoice_id)
-    finalized = invoice.finalize
+    issued = invoice.issue
 
-    assert_equal invoice_id, finalized.id
-    assert_equal "open", finalized.status
+    assert_equal invoice_id, issued.id
+    assert_equal "open", issued.status
 
-    assert_requested :post, "#{Frame.api_base}/v1/invoices/#{invoice_id}/finalize", times: 1
-  end
-
-  def test_pay_invoice
-    invoice_id = "inv_1234567890abcdef"
-
-    stub_api_request(
-      :get,
-      "/v1/invoices/#{invoice_id}",
-      "finalized_invoice.json"
-    )
-
-    stub_api_request(
-      :post,
-      "/v1/invoices/#{invoice_id}/pay",
-      "paid_invoice.json"
-    )
-
-    invoice = Frame::Invoice.retrieve(invoice_id)
-    paid = invoice.pay
-
-    assert_equal invoice_id, paid.id
-    assert_equal "paid", paid.status
-
-    assert_requested :post, "#{Frame.api_base}/v1/invoices/#{invoice_id}/pay", times: 1
-  end
-
-  def test_void_invoice
-    invoice_id = "inv_1234567890abcdef"
-
-    stub_api_request(
-      :get,
-      "/v1/invoices/#{invoice_id}",
-      "invoice.json"
-    )
-
-    stub_api_request(
-      :post,
-      "/v1/invoices/#{invoice_id}/void",
-      "voided_invoice.json"
-    )
-
-    invoice = Frame::Invoice.retrieve(invoice_id)
-    voided = invoice.void
-
-    assert_equal invoice_id, voided.id
-    assert_equal "void", voided.status
-
-    assert_requested :post, "#{Frame.api_base}/v1/invoices/#{invoice_id}/void", times: 1
+    assert_requested :post, "#{Frame.api_base}/v1/invoices/#{invoice_id}/issue", times: 1
   end
 
   def test_delete_invoice

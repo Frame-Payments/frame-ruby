@@ -72,7 +72,7 @@ class TestCustomerIdentityVerification < Minitest::Test
       times: 1
   end
 
-  def test_verify_customer_identity_verification
+  def test_upload_documents_customer_identity_verification
     verification_id = "civ_1234567890abcdef"
 
     stub_api_request(
@@ -83,16 +83,16 @@ class TestCustomerIdentityVerification < Minitest::Test
 
     stub_api_request(
       :post,
-      "/v1/customer_identity_verifications/#{verification_id}/verify",
+      "/v1/customer_identity_verifications/#{verification_id}/upload_documents",
       "verified_customer_identity_verification.json"
     )
 
     verification = Frame::CustomerIdentityVerification.retrieve(verification_id)
-    verified = verification.verify
+    verified = verification.upload_documents
 
     assert_equal verification_id, verified.id
     assert_equal "verified", verified.status
 
-    assert_requested :post, "#{Frame.api_base}/v1/customer_identity_verifications/#{verification_id}/verify", times: 1
+    assert_requested :post, "#{Frame.api_base}/v1/customer_identity_verifications/#{verification_id}/upload_documents", times: 1
   end
 end

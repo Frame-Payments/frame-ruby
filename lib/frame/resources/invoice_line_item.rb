@@ -13,38 +13,37 @@ module Frame
       OBJECT_NAME
     end
 
-    def self.create(params = {}, opts = {})
+    def self.create(invoice_id, params = {}, opts = {})
       request_object(
         :post,
-        "/v1/invoice_line_items",
+        "/v1/invoices/#{CGI.escape(invoice_id)}/line_items",
         params,
         opts
       )
     end
 
-    def self.list(params = {}, opts = {})
+    def self.list(invoice_id, params = {}, opts = {})
       request_object(
         :get,
-        "/v1/invoice_line_items",
+        "/v1/invoices/#{CGI.escape(invoice_id)}/line_items",
         params,
         opts
       )
     end
 
-    def self.retrieve(id, opts = {})
-      id = Util.normalize_id(id)
+    def self.retrieve(invoice_id, id, opts = {})
       request_object(
         :get,
-        "/v1/invoice_line_items/#{CGI.escape(id)}",
+        "/v1/invoices/#{CGI.escape(invoice_id)}/line_items/#{CGI.escape(id)}",
         {},
         opts
       )
     end
 
-    def self.delete(id, params = {}, opts = {})
+    def self.delete(invoice_id, id, params = {}, opts = {})
       request_object(
         :delete,
-        "/v1/invoice_line_items/#{CGI.escape(id)}",
+        "/v1/invoices/#{CGI.escape(invoice_id)}/line_items/#{CGI.escape(id)}",
         params,
         opts
       )
@@ -59,7 +58,7 @@ module Frame
 
       updated = request_object(
         :patch,
-        "/v1/invoice_line_items/#{CGI.escape(self["id"])}",
+        "/v1/invoices/#{CGI.escape(self["invoice"])}/line_items/#{CGI.escape(self["id"])}",
         values,
         opts
       )
@@ -71,7 +70,7 @@ module Frame
     def delete(params = {}, opts = {})
       request_object(
         :delete,
-        "/v1/invoice_line_items/#{CGI.escape(self["id"])}",
+        "/v1/invoices/#{CGI.escape(self["invoice"])}/line_items/#{CGI.escape(self["id"])}",
         params,
         opts
       )
