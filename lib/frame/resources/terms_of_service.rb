@@ -12,7 +12,7 @@ module Frame
       request_object(:post, "/v1/terms_of_service", {}, opts)
     end
 
-    def self.accept_token(params = {}, opts = {})
+    def self.update(params = {}, opts = {})
       request_object(:patch, "/v1/terms_of_service", params, opts)
     end
   end
