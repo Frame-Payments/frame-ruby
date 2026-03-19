@@ -4,7 +4,9 @@ module Frame
   class Capability < APIResource
     OBJECT_NAME = "capability"
 
-    def self.object_name; OBJECT_NAME; end
+    def self.object_name
+      OBJECT_NAME
+    end
 
     def self.list(account_id, params = {}, opts = {})
       request_object(:get, "/v1/accounts/#{CGI.escape(account_id)}/capabilities", params, opts)

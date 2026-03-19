@@ -4,7 +4,9 @@ module Frame
   class Billing < APIResource
     OBJECT_NAME = "billing"
 
-    def self.object_name; OBJECT_NAME; end
+    def self.object_name
+      OBJECT_NAME
+    end
 
     def self.create_metering(params = {}, opts = {})
       request_object(:post, "/v1/billing/metering", params, opts)

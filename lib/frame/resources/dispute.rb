@@ -6,7 +6,9 @@ module Frame
 
     OBJECT_NAME = "dispute"
 
-    def self.object_name; OBJECT_NAME; end
+    def self.object_name
+      OBJECT_NAME
+    end
 
     def self.list(params = {}, opts = {})
       request_object(:get, "/v1/disputes", params, opts)

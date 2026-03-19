@@ -4,7 +4,9 @@ module Frame
   class OnboardingSession < APIResource
     OBJECT_NAME = "onboarding_session"
 
-    def self.object_name; OBJECT_NAME; end
+    def self.object_name
+      OBJECT_NAME
+    end
 
     def self.create(params = {}, opts = {})
       request_object(:post, "/v1/onboarding_sessions", params, opts)

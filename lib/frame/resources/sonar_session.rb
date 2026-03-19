@@ -6,7 +6,9 @@ module Frame
 
     OBJECT_NAME = "sonar_session"
 
-    def self.object_name; OBJECT_NAME; end
+    def self.object_name
+      OBJECT_NAME
+    end
 
     def self.create(params = {}, opts = {})
       request_object(:post, "/v1/sonar_sessions", params, opts)

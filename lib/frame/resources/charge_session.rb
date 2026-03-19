@@ -6,7 +6,9 @@ module Frame
 
     OBJECT_NAME = "charge_session"
 
-    def self.object_name; OBJECT_NAME; end
+    def self.object_name
+      OBJECT_NAME
+    end
 
     def self.create(params = {}, opts = {})
       request_object(:post, "/v1/charge_sessions", params, opts)

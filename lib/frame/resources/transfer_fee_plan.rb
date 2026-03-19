@@ -4,7 +4,9 @@ module Frame
   class TransferFeePlan < APIResource
     OBJECT_NAME = "transfer_fee_plan"
 
-    def self.object_name; OBJECT_NAME; end
+    def self.object_name
+      OBJECT_NAME
+    end
 
     def self.create(params = {}, opts = {})
       request_object(:post, "/v1/transfer_fee_plans", params, opts)

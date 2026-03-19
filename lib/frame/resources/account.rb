@@ -8,7 +8,9 @@ module Frame
 
     OBJECT_NAME = "account"
 
-    def self.object_name; OBJECT_NAME; end
+    def self.object_name
+      OBJECT_NAME
+    end
 
     def self.create(params = {}, opts = {})
       request_object(:post, "/v1/accounts", params, opts)

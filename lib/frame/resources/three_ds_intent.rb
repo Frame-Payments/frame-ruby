@@ -4,7 +4,9 @@ module Frame
   class ThreeDsIntent < APIResource
     OBJECT_NAME = "three_ds_intent"
 
-    def self.object_name; OBJECT_NAME; end
+    def self.object_name
+      OBJECT_NAME
+    end
 
     def self.create(params = {}, opts = {})
       request_object(:post, "/v1/3ds/intents", params, opts)

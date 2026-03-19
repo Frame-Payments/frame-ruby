@@ -6,7 +6,9 @@ module Frame
 
     OBJECT_NAME = "transfer_billing_agreement"
 
-    def self.object_name; OBJECT_NAME; end
+    def self.object_name
+      OBJECT_NAME
+    end
 
     def self.create(params = {}, opts = {})
       request_object(:post, "/v1/transfer_billing_agreements", params, opts)
