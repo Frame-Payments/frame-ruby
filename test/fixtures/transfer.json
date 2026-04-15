@@ -1,0 +1,10 @@
+{
+  "id": "tr_1234567890abcdef",
+  "amount": 10000,
+  "currency": "usd",
+  "status": "pending",
+  "account_id": "acct_123",
+  "created": 1640995200,
+  "livemode": false,
+  "object": "transfer"
+}

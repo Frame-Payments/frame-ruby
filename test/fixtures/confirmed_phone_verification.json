@@ -1,0 +1,7 @@
+{
+  "id": "pv_1234567890abcdef",
+  "account_id": "acct_123",
+  "status": "confirmed",
+  "created": 1640995200,
+  "object": "phone_verification"
+}

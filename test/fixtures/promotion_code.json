@@ -1,0 +1,9 @@
+{
+  "id": "promo_1234567890abcdef",
+  "code": "SAVE10",
+  "coupon_id": "cpn_123",
+  "active": true,
+  "created": 1640995200,
+  "livemode": false,
+  "object": "promotion_code"
+}

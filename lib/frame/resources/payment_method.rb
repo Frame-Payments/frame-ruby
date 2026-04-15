@@ -4,7 +4,6 @@ module Frame
   class PaymentMethod < APIResource
     extend Frame::APIOperations::Create
     extend Frame::APIOperations::List
-    include Frame::APIOperations::Delete
     include Frame::APIOperations::Save
 
     OBJECT_NAME = "payment_method"
@@ -41,10 +40,10 @@ module Frame
       )
     end
 
-    def self.delete(id, params = {}, opts = {})
+    def self.connect_plaid(params = {}, opts = {})
       request_object(
-        :delete,
-        "/v1/payment_methods/#{CGI.escape(id)}",
+        :post,
+        "/v1/payment_methods/connect_plaid",
         params,
         opts
       )
@@ -66,15 +65,6 @@ module Frame
 
       initialize_from(updated)
       self
-    end
-
-    def delete(params = {}, opts = {})
-      request_object(
-        :delete,
-        "/v1/payment_methods/#{CGI.escape(self["id"])}",
-        params,
-        opts
-      )
     end
 
     def attach(customer_id, params = {}, opts = {})

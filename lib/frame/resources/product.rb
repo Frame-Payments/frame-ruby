@@ -41,6 +41,15 @@ module Frame
       )
     end
 
+    def self.search(params = {}, opts = {})
+      request_object(
+        :get,
+        "/v1/products/search",
+        params,
+        opts
+      )
+    end
+
     def self.delete(id, params = {}, opts = {})
       request_object(
         :delete,

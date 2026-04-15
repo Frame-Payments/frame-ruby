@@ -28,6 +28,26 @@ module Frame
       request_object(:delete, "/v1/accounts/#{CGI.escape(id)}", params, opts)
     end
 
+    def self.search(params = {}, opts = {})
+      request_object(:get, "/v1/accounts/search", params, opts)
+    end
+
+    def self.payment_methods(id, opts = {})
+      request_object(:get, "/v1/accounts/#{CGI.escape(id)}/payment_methods", {}, opts)
+    end
+
+    def self.plaid_link_token(id, opts = {})
+      request_object(:get, "/v1/accounts/#{CGI.escape(id)}/plaid_link_token", {}, opts)
+    end
+
+    def self.restrict(id, opts = {})
+      request_object(:post, "/v1/accounts/#{CGI.escape(id)}/restrict", {}, opts)
+    end
+
+    def self.unrestrict(id, opts = {})
+      request_object(:post, "/v1/accounts/#{CGI.escape(id)}/unrestrict", {}, opts)
+    end
+
     def self.geo_compliance(id, opts = {})
       request_object(:get, "/v1/accounts/#{CGI.escape(id)}/geo_compliance", {}, opts)
     end

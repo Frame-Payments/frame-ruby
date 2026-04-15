@@ -1,0 +1,11 @@
+{
+  "id": "acs_1234567890abcdef",
+  "account_id": "acct_123",
+  "client_secret": "acs_secret_123",
+  "return_url": "https://example.com/return",
+  "steps": ["identity", "banking"],
+  "expires_at": 1640995200,
+  "url": "https://onboarding.framepayments.com/flow/abc",
+  "livemode": false,
+  "object": "onboarding_session"
+}

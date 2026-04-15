@@ -1,0 +1,11 @@
+{
+  "id": "cpn_1234567890abcdef",
+  "name": "Test Coupon",
+  "discount_type": "percentage",
+  "discount_value": 10,
+  "status": "active",
+  "created": 1640995200,
+  "updated": 1640995200,
+  "livemode": false,
+  "object": "coupon"
+}

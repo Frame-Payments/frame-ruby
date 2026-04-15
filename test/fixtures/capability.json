@@ -1,0 +1,6 @@
+{
+  "name": "payments",
+  "status": "active",
+  "account_id": "acct_123",
+  "object": "capability"
+}

@@ -73,28 +73,4 @@ class TestRefund < Minitest::Test
       query: {page: 1, per_page: 20},
       times: 1
   end
-
-  def test_cancel_refund
-    refund_id = "rf_1234567890abcdef"
-
-    stub_api_request(
-      :get,
-      "/v1/refunds/#{refund_id}",
-      "refund.json"
-    )
-
-    stub_api_request(
-      :post,
-      "/v1/refunds/#{refund_id}/cancel",
-      "cancelled_refund.json"
-    )
-
-    refund = Frame::Refund.retrieve(refund_id)
-    cancelled_refund = refund.cancel
-
-    assert_equal refund_id, cancelled_refund.id
-    assert_equal "cancelled", cancelled_refund.status
-
-    assert_requested :post, "#{Frame.api_base}/v1/refunds/#{refund_id}/cancel", times: 1
-  end
 end

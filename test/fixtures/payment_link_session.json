@@ -1,0 +1,8 @@
+{
+  "id": "pls_1234567890abcdef",
+  "client_reference_id": "ref_123",
+  "url": "https://pay.framepayments.com/abc",
+  "created": 1640995200,
+  "livemode": false,
+  "object": "payment_link_session"
+}

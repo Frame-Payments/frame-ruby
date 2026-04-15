@@ -30,6 +30,7 @@ require "frame/resources/invoice_line_item"
 
 # Onboarding
 require "frame/resources/geofence"
+require "frame/resources/onboarding"
 require "frame/resources/onboarding_session"
 
 # Billing

@@ -145,21 +145,65 @@ class TestPaymentMethod < Minitest::Test
     assert_requested :post, "#{Frame.api_base}/v1/payment_methods/#{payment_method_id}/detach", times: 1
   end
 
-  def test_delete_payment_method
+  def test_block_payment_method
     payment_method_id = "pm_1234567890abcdef"
 
     stub_api_request(
-      :delete,
+      :get,
       "/v1/payment_methods/#{payment_method_id}",
-      "deleted_payment_method.json"
+      "payment_method.json"
     )
 
-    deleted_payment_method = Frame::PaymentMethod.delete(payment_method_id)
+    stub_api_request(
+      :post,
+      "/v1/payment_methods/#{payment_method_id}/block",
+      "payment_method.json"
+    )
 
-    assert_equal payment_method_id, deleted_payment_method.id
-    assert_equal true, deleted_payment_method.deleted
-    assert_equal "payment_method", deleted_payment_method.object
+    payment_method = Frame::PaymentMethod.retrieve(payment_method_id)
+    blocked = payment_method.block
 
-    assert_requested :delete, "#{Frame.api_base}/v1/payment_methods/#{payment_method_id}", times: 1
+    assert_equal payment_method_id, blocked.id
+    assert_requested :post, "#{Frame.api_base}/v1/payment_methods/#{payment_method_id}/block", times: 1
+  end
+
+  def test_unblock_payment_method
+    payment_method_id = "pm_1234567890abcdef"
+
+    stub_api_request(
+      :get,
+      "/v1/payment_methods/#{payment_method_id}",
+      "payment_method.json"
+    )
+
+    stub_api_request(
+      :post,
+      "/v1/payment_methods/#{payment_method_id}/unblock",
+      "payment_method.json"
+    )
+
+    payment_method = Frame::PaymentMethod.retrieve(payment_method_id)
+    unblocked = payment_method.unblock
+
+    assert_equal payment_method_id, unblocked.id
+    assert_requested :post, "#{Frame.api_base}/v1/payment_methods/#{payment_method_id}/unblock", times: 1
+  end
+
+  def test_connect_plaid
+    stub_api_request(
+      :post,
+      "/v1/payment_methods/connect_plaid",
+      "payment_method.json"
+    )
+
+    payment_method = Frame::PaymentMethod.connect_plaid(
+      account: "acct_123",
+      public_token: "public-sandbox-abc123",
+      account_id: "plaid_acct_456"
+    )
+
+    assert_equal "pm_1234567890abcdef", payment_method.id
+    assert_equal "payment_method", payment_method.object
+    assert_requested :post, "#{Frame.api_base}/v1/payment_methods/connect_plaid", times: 1
   end
 end

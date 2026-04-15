@@ -1,0 +1,7 @@
+{
+  "id": "bcr_1234567890abcdef",
+  "amount": 5000,
+  "currency": "usd",
+  "created": 1640995200,
+  "object": "billing_credit"
+}

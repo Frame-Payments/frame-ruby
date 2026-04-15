@@ -3,6 +3,7 @@
 module Frame
   module Util
     OBJECT_CLASSES = {
+      "account" => "Account",
       "customer" => "Customer",
       "charge_intent" => "ChargeIntent",
       "payment_method" => "PaymentMethod",
@@ -15,6 +16,14 @@ module Frame
       "product_phase" => "ProductPhase",
       "webhook_endpoint" => "WebhookEndpoint",
       "customer_identity_verification" => "CustomerIdentityVerification",
+      "onboarding_session" => "Onboarding",
+      "dispute" => "Dispute",
+      "coupon" => "Coupon",
+      "promotion_code" => "PromotionCode",
+      "discount" => "Discount",
+      "transfer" => "Transfer",
+      "transfer_fee_plan" => "TransferFeePlan",
+      "transfer_billing_agreement" => "TransferBillingAgreement",
       "list" => "ListObject"
     }.freeze
 

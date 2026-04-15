@@ -1,0 +1,19 @@
+{
+  "id": "dp_1234567890abcdef",
+  "amount_cents": 5000,
+  "amount_currency": "usd",
+  "charge_intent": null,
+  "reason": {
+    "code": "fraudulent",
+    "description": "Cardholder does not recognize the transaction",
+    "category": "fraud"
+  },
+  "status": "under_review",
+  "display_status": "Under Review",
+  "acquirer_reference_number": null,
+  "authorization_code": null,
+  "created": 1640995200,
+  "updated": 1640995200,
+  "livemode": false,
+  "object": "dispute"
+}

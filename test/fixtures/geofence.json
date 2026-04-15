@@ -1,0 +1,8 @@
+{
+  "id": "gf_1234567890abcdef",
+  "name": "US Only",
+  "status": "active",
+  "created": 1640995200,
+  "livemode": false,
+  "object": "geofence"
+}

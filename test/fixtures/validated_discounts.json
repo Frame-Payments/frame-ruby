@@ -1,0 +1,10 @@
+{
+  "data": [
+    {
+      "id": "disc_123",
+      "valid": true,
+      "coupon_id": "cpn_123",
+      "object": "discount"
+    }
+  ]
+}

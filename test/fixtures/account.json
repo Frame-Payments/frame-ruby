@@ -1,0 +1,16 @@
+{
+  "id": "acct_1234567890abcdef",
+  "type": "individual",
+  "status": "active",
+  "external_id": null,
+  "metadata": null,
+  "payout_payment_method_id": null,
+  "terms_of_service": null,
+  "profile": null,
+  "capabilities": [],
+  "steps": [],
+  "created": 1640995200,
+  "updated": 1640995200,
+  "livemode": false,
+  "object": "account"
+}

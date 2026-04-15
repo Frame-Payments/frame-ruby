@@ -112,4 +112,22 @@ class TestProduct < Minitest::Test
 
     assert_requested :delete, "#{Frame.api_base}/v1/products/#{product_id}", times: 1
   end
+
+  def test_search_products
+    stub_api_request(
+      :get,
+      "/v1/products/search",
+      "search_products.json",
+      request_params: {name: "Test"}
+    )
+
+    products = Frame::Product.search(name: "Test")
+
+    assert_equal 1, products.data.size
+    assert_equal "Test Product", products.data.first.name
+
+    assert_requested :get, "#{Frame.api_base}/v1/products/search",
+      query: {name: "Test"},
+      times: 1
+  end
 end

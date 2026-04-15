@@ -1,0 +1,7 @@
+{
+  "id": "mev_1234567890abcdef",
+  "metering_id": "met_123",
+  "quantity": 1,
+  "created": 1640995200,
+  "object": "billing_metering_event"
+}

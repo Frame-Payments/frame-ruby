@@ -1,0 +1,8 @@
+{
+  "id": "tfp_1234567890abcdef",
+  "name": "Standard Plan",
+  "fee_application_mode": "per_transaction",
+  "created": 1640995200,
+  "livemode": false,
+  "object": "transfer_fee_plan"
+}

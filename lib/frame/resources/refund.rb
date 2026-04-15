@@ -38,23 +38,5 @@ module Frame
         opts
       )
     end
-
-    def cancel(params = {}, opts = {})
-      request_object(
-        :post,
-        "/v1/refunds/#{CGI.escape(self["id"])}/cancel",
-        params,
-        opts
-      )
-    end
-
-    def self.cancel(id, params = {}, opts = {})
-      request_object(
-        :post,
-        "/v1/refunds/#{CGI.escape(id)}/cancel",
-        params,
-        opts
-      )
-    end
   end
 end

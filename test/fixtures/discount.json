@@ -1,0 +1,8 @@
+{
+  "id": "disc_1234567890abcdef",
+  "coupon_id": "cpn_123",
+  "customer_id": "cus_123",
+  "created": 1640995200,
+  "livemode": false,
+  "object": "discount"
+}

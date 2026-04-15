@@ -95,6 +95,15 @@ module Frame
       )
     end
 
+    def self.payment_methods(id, opts = {})
+      request_object(
+        :get,
+        "/v1/customers/#{CGI.escape(id)}/payment_methods",
+        {},
+        opts
+      )
+    end
+
     def save(params = {}, opts = {})
       values = serialize_params(self).merge(params)
 
