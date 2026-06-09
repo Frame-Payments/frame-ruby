@@ -4,7 +4,6 @@ module Frame
   class Subscription < APIResource
     extend Frame::APIOperations::Create
     extend Frame::APIOperations::List
-    include Frame::APIOperations::Delete
     include Frame::APIOperations::Save
 
     OBJECT_NAME = "subscription"
@@ -41,15 +40,6 @@ module Frame
       )
     end
 
-    def self.delete(id, params = {}, opts = {})
-      request_object(
-        :delete,
-        "/v1/subscriptions/#{CGI.escape(id)}",
-        params,
-        opts
-      )
-    end
-
     def save(params = {}, opts = {})
       values = serialize_params(self).merge(params)
 
@@ -66,15 +56,6 @@ module Frame
 
       initialize_from(updated)
       self
-    end
-
-    def delete(params = {}, opts = {})
-      request_object(
-        :delete,
-        "/v1/subscriptions/#{CGI.escape(self["id"])}",
-        params,
-        opts
-      )
     end
 
     def cancel(params = {}, opts = {})

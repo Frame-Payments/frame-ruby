@@ -114,22 +114,4 @@ class TestSubscription < Minitest::Test
 
     assert_requested :post, "#{Frame.api_base}/v1/subscriptions/#{subscription_id}/cancel", times: 1
   end
-
-  def test_delete_subscription
-    subscription_id = "sub_1234567890abcdef"
-
-    stub_api_request(
-      :delete,
-      "/v1/subscriptions/#{subscription_id}",
-      "deleted_subscription.json"
-    )
-
-    deleted_subscription = Frame::Subscription.delete(subscription_id)
-
-    assert_equal subscription_id, deleted_subscription.id
-    assert_equal true, deleted_subscription.deleted
-    assert_equal "subscription", deleted_subscription.object
-
-    assert_requested :delete, "#{Frame.api_base}/v1/subscriptions/#{subscription_id}", times: 1
-  end
 end

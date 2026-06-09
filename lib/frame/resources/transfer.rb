@@ -19,5 +19,14 @@ module Frame
     def self.retrieve(id, opts = {})
       request_object(:get, "/v1/transfers/#{CGI.escape(id)}", {}, opts)
     end
+
+    def self.confirm(id, params = {}, opts = {})
+      id = Util.normalize_id(id)
+      request_object(:post, "/v1/transfers/#{CGI.escape(id)}/confirm", params, opts)
+    end
+
+    def confirm(params = {}, opts = {})
+      request_object(:post, "/v1/transfers/#{CGI.escape(self["id"])}/confirm", params, opts)
+    end
   end
 end
