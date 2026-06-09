@@ -52,4 +52,24 @@ class TestTransfer < Minitest::Test
     assert_equal "usd", transfer.currency
     assert_equal "transfer", transfer.object
   end
+
+  def test_confirm_transfer_class_method
+    transfer_id = "tr_1234567890abcdef"
+    stub_api_request(:post, "/v1/transfers/#{transfer_id}/confirm", "transfer.json")
+
+    transfer = Frame::Transfer.confirm(transfer_id)
+    assert_equal transfer_id, transfer.id
+    assert_requested :post, "#{Frame.api_base}/v1/transfers/#{transfer_id}/confirm", times: 1
+  end
+
+  def test_confirm_transfer_instance_method
+    transfer_id = "tr_1234567890abcdef"
+    stub_api_request(:get, "/v1/transfers/#{transfer_id}", "transfer.json")
+    stub_api_request(:post, "/v1/transfers/#{transfer_id}/confirm", "transfer.json")
+
+    transfer = Frame::Transfer.retrieve(transfer_id)
+    confirmed = transfer.confirm
+    assert_equal transfer_id, confirmed.id
+    assert_requested :post, "#{Frame.api_base}/v1/transfers/#{transfer_id}/confirm", times: 1
+  end
 end

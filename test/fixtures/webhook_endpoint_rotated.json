@@ -1,0 +1,12 @@
+{
+  "id": "we_1234567890abcdef",
+  "description": "My webhook",
+  "livemode": false,
+  "event_codes": ["charge.succeeded", "charge.failed"],
+  "secret": "whsec_newrotatedsecret1234",
+  "status": "active",
+  "url": "https://example.com/webhook",
+  "created": 1736995552,
+  "updated": 1736999999,
+  "object": "webhook_endpoint"
+}

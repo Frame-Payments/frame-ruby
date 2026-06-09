@@ -59,5 +59,9 @@ module Frame
     def self.subscription_report(params = {}, opts = {})
       request_object(:get, "/v1/billing/report/subscription", params, opts)
     end
+
+    def self.threshold_progress_report(params = {}, opts = {})
+      request_object(:get, "/v1/billing/report/threshold_progress", params, opts)
+    end
   end
 end
