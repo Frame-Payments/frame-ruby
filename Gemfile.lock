@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    frame_payments (0.1.2)
+    frame_payments (0.1.3)
       faraday (~> 2.0)
 
 GEM

@@ -78,4 +78,20 @@ class TestBilling < Minitest::Test
     Frame::Billing.customer_report
     assert_requested :get, "#{Frame.api_base}/v1/billing/report/customer", times: 1
   end
+
+  def test_threshold_progress_report
+    stub_api_request(
+      :get,
+      "/v1/billing/report/threshold_progress",
+      "billing_threshold_progress.json",
+      request_params: {customer: "cus_1234567890abcdef"}
+    )
+
+    report = Frame::Billing.threshold_progress_report(customer: "cus_1234567890abcdef")
+    assert_equal 5000, report.accumulated_amount_cents
+    assert_equal 10000, report.threshold_amount_cents
+    assert_equal 50.0, report.threshold_percentage
+    assert_requested :get, "#{Frame.api_base}/v1/billing/report/threshold_progress",
+      query: {customer: "cus_1234567890abcdef"}, times: 1
+  end
 end

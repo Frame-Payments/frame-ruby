@@ -4,6 +4,7 @@ module Frame
   module Util
     OBJECT_CLASSES = {
       "account" => "Account",
+      "bank_account" => "BankAccount",
       "customer" => "Customer",
       "charge_intent" => "ChargeIntent",
       "payment_method" => "PaymentMethod",

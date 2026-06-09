@@ -1,0 +1,14 @@
+{
+  "object": "threshold_progress",
+  "accumulated_amount_cents": 5000,
+  "threshold_amount_cents": 10000,
+  "threshold_percentage": 50.0,
+  "oldest_pending_charge_at": null,
+  "period_start": "2026-06-01T00:00:00Z",
+  "period_end": "2026-06-30T23:59:59Z",
+  "billing_cycle": "monthly",
+  "customer": "cus_1234567890abcdef",
+  "account": null,
+  "account_id": null,
+  "livemode": false
+}

@@ -13,6 +13,7 @@ require "frame/resources/customer"
 require "frame/resources/customer_identity_verification"
 
 # Payment processing
+require "frame/resources/bank_account"
 require "frame/resources/charge"
 require "frame/resources/charge_intent"
 require "frame/resources/charge_session"
