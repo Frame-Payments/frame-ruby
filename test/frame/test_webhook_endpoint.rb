@@ -93,4 +93,21 @@ class TestWebhookEndpoint < Minitest::Test
     endpoint.delete
     assert_requested :delete, "#{Frame.api_base}/v1/webhook_endpoints/#{endpoint_id}", times: 1
   end
+
+  def test_update_webhook_endpoint_class_method
+    endpoint_id = "we_1234567890abcdef"
+    stub_api_request(:patch, "/v1/webhook_endpoints/#{endpoint_id}", "webhook_endpoint.json")
+
+    endpoint = Frame::WebhookEndpoint.update(endpoint_id, url: "https://example.com/new")
+    assert_equal endpoint_id, endpoint.id
+    assert_requested :patch, "#{Frame.api_base}/v1/webhook_endpoints/#{endpoint_id}", times: 1
+  end
+
+  def test_delete_webhook_endpoint_class_method
+    endpoint_id = "we_1234567890abcdef"
+    stub_api_request(:delete, "/v1/webhook_endpoints/#{endpoint_id}", "webhook_endpoint.json")
+
+    Frame::WebhookEndpoint.delete(endpoint_id)
+    assert_requested :delete, "#{Frame.api_base}/v1/webhook_endpoints/#{endpoint_id}", times: 1
+  end
 end
