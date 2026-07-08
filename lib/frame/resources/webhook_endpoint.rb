@@ -26,6 +26,16 @@ module Frame
       request_object(:post, "/v1/webhook_endpoints", params, opts)
     end
 
+    def self.update(id, params = {}, opts = {})
+      id = Util.normalize_id(id)
+      request_object(:patch, "/v1/webhook_endpoints/#{CGI.escape(id)}", params, opts)
+    end
+
+    def self.delete(id, params = {}, opts = {})
+      id = Util.normalize_id(id)
+      request_object(:delete, "/v1/webhook_endpoints/#{CGI.escape(id)}", params, opts)
+    end
+
     def self.rotate_secret(id, params = {}, opts = {})
       id = Util.normalize_id(id)
       request_object(:post, "/v1/webhook_endpoints/#{CGI.escape(id)}/rotate_secret", params, opts)
