@@ -1,0 +1,849 @@
+{
+  "sdk": "frame-ruby",
+  "version": "0.1.3",
+  "resources": {
+    "accounts": {
+      "class": "Account",
+      "methods": [
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "disable",
+          "deprecated": false
+        },
+        {
+          "name": "geo_compliance",
+          "deprecated": false
+        },
+        {
+          "name": "list",
+          "deprecated": false
+        },
+        {
+          "name": "payment_methods",
+          "deprecated": false
+        },
+        {
+          "name": "plaid_link_token",
+          "deprecated": false
+        },
+        {
+          "name": "restrict",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        },
+        {
+          "name": "save",
+          "deprecated": false
+        },
+        {
+          "name": "search",
+          "deprecated": false
+        },
+        {
+          "name": "unrestrict",
+          "deprecated": false
+        }
+      ]
+    },
+    "bankAccounts": {
+      "class": "BankAccount",
+      "methods": [
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        }
+      ]
+    },
+    "billing": {
+      "class": "Billing",
+      "methods": [
+        {
+          "name": "create_billing_credit",
+          "deprecated": false
+        },
+        {
+          "name": "create_billing_invoice",
+          "deprecated": false
+        },
+        {
+          "name": "create_metering",
+          "deprecated": false
+        },
+        {
+          "name": "create_metering_event",
+          "deprecated": false
+        },
+        {
+          "name": "customer_report",
+          "deprecated": false
+        },
+        {
+          "name": "event_report",
+          "deprecated": false
+        },
+        {
+          "name": "events_report",
+          "deprecated": false
+        },
+        {
+          "name": "get_billing_credit",
+          "deprecated": false
+        },
+        {
+          "name": "get_metering",
+          "deprecated": false
+        },
+        {
+          "name": "get_metering_event",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        },
+        {
+          "name": "subscription_report",
+          "deprecated": false
+        },
+        {
+          "name": "threshold_progress_report",
+          "deprecated": false
+        },
+        {
+          "name": "update_metering",
+          "deprecated": false
+        },
+        {
+          "name": "update_metering_event",
+          "deprecated": false
+        }
+      ]
+    },
+    "capabilities": {
+      "class": "Capability",
+      "methods": [
+        {
+          "name": "disable",
+          "deprecated": false
+        },
+        {
+          "name": "list",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        }
+      ]
+    },
+    "chargeIntents": {
+      "class": "ChargeIntent",
+      "methods": [
+        {
+          "name": "cancel",
+          "deprecated": false
+        },
+        {
+          "name": "capture",
+          "deprecated": false
+        },
+        {
+          "name": "confirm",
+          "deprecated": false
+        },
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "list",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        },
+        {
+          "name": "save",
+          "deprecated": false
+        },
+        {
+          "name": "void_remaining",
+          "deprecated": false
+        }
+      ]
+    },
+    "chargeSessions": {
+      "class": "ChargeSession",
+      "methods": [
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        },
+        {
+          "name": "save",
+          "deprecated": false
+        },
+        {
+          "name": "update",
+          "deprecated": false
+        }
+      ]
+    },
+    "charges": {
+      "class": "Charge",
+      "methods": [
+        {
+          "name": "retrieve",
+          "deprecated": false
+        },
+        {
+          "name": "trace",
+          "deprecated": false
+        }
+      ]
+    },
+    "coupons": {
+      "class": "Coupon",
+      "methods": [
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "list",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        },
+        {
+          "name": "save",
+          "deprecated": false
+        }
+      ]
+    },
+    "customerIdentityVerifications": {
+      "class": "CustomerIdentityVerification",
+      "methods": [
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "list",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        },
+        {
+          "name": "upload_documents",
+          "deprecated": false
+        }
+      ]
+    },
+    "customers": {
+      "class": "Customer",
+      "methods": [
+        {
+          "name": "block",
+          "deprecated": false
+        },
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "delete",
+          "deprecated": false
+        },
+        {
+          "name": "list",
+          "deprecated": false
+        },
+        {
+          "name": "payment_methods",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        },
+        {
+          "name": "save",
+          "deprecated": false
+        },
+        {
+          "name": "search",
+          "deprecated": false
+        },
+        {
+          "name": "unblock",
+          "deprecated": false
+        }
+      ]
+    },
+    "discounts": {
+      "class": "Discount",
+      "methods": [
+        {
+          "name": "list",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        },
+        {
+          "name": "validate",
+          "deprecated": false
+        }
+      ]
+    },
+    "disputes": {
+      "class": "Dispute",
+      "methods": [
+        {
+          "name": "create_document",
+          "deprecated": false
+        },
+        {
+          "name": "list",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        },
+        {
+          "name": "save",
+          "deprecated": false
+        },
+        {
+          "name": "update",
+          "deprecated": false
+        }
+      ]
+    },
+    "geofences": {
+      "class": "Geofence",
+      "methods": [
+        {
+          "name": "list",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        }
+      ]
+    },
+    "invoiceLineItems": {
+      "class": "InvoiceLineItem",
+      "methods": [
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "delete",
+          "deprecated": false
+        },
+        {
+          "name": "list",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        },
+        {
+          "name": "save",
+          "deprecated": false
+        }
+      ]
+    },
+    "invoices": {
+      "class": "Invoice",
+      "methods": [
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "delete",
+          "deprecated": false
+        },
+        {
+          "name": "issue",
+          "deprecated": false
+        },
+        {
+          "name": "list",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        },
+        {
+          "name": "save",
+          "deprecated": false
+        }
+      ]
+    },
+    "onboarding": {
+      "class": "Onboarding",
+      "methods": [
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "list",
+          "deprecated": false
+        },
+        {
+          "name": "payout",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        },
+        {
+          "name": "update",
+          "deprecated": false
+        }
+      ]
+    },
+    "onboardingSessions": {
+      "class": "OnboardingSession",
+      "methods": [
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "list",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        }
+      ]
+    },
+    "paymentLinkSessions": {
+      "class": "PaymentLinkSession",
+      "methods": [
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        }
+      ]
+    },
+    "paymentMethods": {
+      "class": "PaymentMethod",
+      "methods": [
+        {
+          "name": "attach",
+          "deprecated": false
+        },
+        {
+          "name": "block",
+          "deprecated": false
+        },
+        {
+          "name": "connect_plaid",
+          "deprecated": false
+        },
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "detach",
+          "deprecated": false
+        },
+        {
+          "name": "list",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        },
+        {
+          "name": "save",
+          "deprecated": false
+        },
+        {
+          "name": "unblock",
+          "deprecated": false
+        }
+      ]
+    },
+    "payouts": {
+      "class": "Payout",
+      "methods": [
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        }
+      ]
+    },
+    "phoneVerifications": {
+      "class": "PhoneVerification",
+      "methods": [
+        {
+          "name": "confirm",
+          "deprecated": false
+        },
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        }
+      ]
+    },
+    "productPhases": {
+      "class": "ProductPhase",
+      "methods": [
+        {
+          "name": "bulk_update",
+          "deprecated": false
+        },
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "delete",
+          "deprecated": false
+        },
+        {
+          "name": "list",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        },
+        {
+          "name": "save",
+          "deprecated": false
+        }
+      ]
+    },
+    "products": {
+      "class": "Product",
+      "methods": [
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "delete",
+          "deprecated": false
+        },
+        {
+          "name": "list",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        },
+        {
+          "name": "save",
+          "deprecated": false
+        },
+        {
+          "name": "search",
+          "deprecated": false
+        }
+      ]
+    },
+    "promotionCodes": {
+      "class": "PromotionCode",
+      "methods": [
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "list",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        },
+        {
+          "name": "save",
+          "deprecated": false
+        }
+      ]
+    },
+    "refunds": {
+      "class": "Refund",
+      "methods": [
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "list",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        }
+      ]
+    },
+    "sonarSessions": {
+      "class": "SonarSession",
+      "methods": [
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        },
+        {
+          "name": "save",
+          "deprecated": false
+        },
+        {
+          "name": "update",
+          "deprecated": false
+        }
+      ]
+    },
+    "subscriptionChangeLogs": {
+      "class": "SubscriptionChangeLog",
+      "methods": [
+        {
+          "name": "list",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        }
+      ]
+    },
+    "subscriptionPhases": {
+      "class": "SubscriptionPhase",
+      "methods": [
+        {
+          "name": "bulk_update",
+          "deprecated": false
+        },
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "delete",
+          "deprecated": false
+        },
+        {
+          "name": "list",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        },
+        {
+          "name": "save",
+          "deprecated": false
+        }
+      ]
+    },
+    "subscriptions": {
+      "class": "Subscription",
+      "methods": [
+        {
+          "name": "cancel",
+          "deprecated": false
+        },
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "list",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        },
+        {
+          "name": "save",
+          "deprecated": false
+        }
+      ]
+    },
+    "termsOfService": {
+      "class": "TermsOfService",
+      "methods": [
+        {
+          "name": "create_token",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        },
+        {
+          "name": "update",
+          "deprecated": false
+        }
+      ]
+    },
+    "threeDsIntents": {
+      "class": "ThreeDsIntent",
+      "methods": [
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "resend",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        }
+      ]
+    },
+    "transferBillingAgreements": {
+      "class": "TransferBillingAgreement",
+      "methods": [
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "list",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        },
+        {
+          "name": "save",
+          "deprecated": false
+        },
+        {
+          "name": "update",
+          "deprecated": false
+        }
+      ]
+    },
+    "transferFeePlans": {
+      "class": "TransferFeePlan",
+      "methods": [
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "list",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        }
+      ]
+    },
+    "transfers": {
+      "class": "Transfer",
+      "methods": [
+        {
+          "name": "confirm",
+          "deprecated": false
+        },
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "list",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        }
+      ]
+    },
+    "webhookEndpoints": {
+      "class": "WebhookEndpoint",
+      "methods": [
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "delete",
+          "deprecated": false
+        },
+        {
+          "name": "list",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        },
+        {
+          "name": "rotate_secret",
+          "deprecated": false
+        },
+        {
+          "name": "save",
+          "deprecated": false
+        }
+      ]
+    }
+  }
+}
