@@ -57,5 +57,8 @@ require "frame/resources/transfer_fee_plan"
 # Terms of Service
 require "frame/resources/terms_of_service"
 
+# Merchant
+require "frame/resources/merchant_balance"
+
 # Webhooks
 require "frame/resources/webhook_endpoint"

@@ -36,4 +36,16 @@ class TestOnboardingSession < Minitest::Test
       query: {account_id: "acct_123"},
       times: 1
   end
+
+  def test_bootstrap_onboarding_session
+    stub_api_request(
+      :get,
+      "/v1/onboarding_sessions/bootstrap",
+      "onboarding_session_account.json"
+    )
+
+    Frame::OnboardingSession.bootstrap
+
+    assert_requested :get, "#{Frame.api_base}/v1/onboarding_sessions/bootstrap", times: 1
+  end
 end

@@ -1,0 +1,11 @@
+{
+  "merchant_id": "00000000-0000-4000-8000-000000000001",
+  "currency": "USD",
+  "dots_balance": 50000.0,
+  "available_for_payout": 40000.0,
+  "reserved_amount": 5000.0,
+  "pending_payouts": 5000.0,
+  "last_updated_at": "2025-04-20T00:00:00Z",
+  "source": "api",
+  "status": "AVAILABLE"
+}
