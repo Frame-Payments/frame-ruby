@@ -38,6 +38,20 @@ class TestCustomerIdentityVerification < Minitest::Test
     assert_equal "customer_identity_verification", verification.object
   end
 
+  def test_create_for_customer_identity_verification
+    customer_id = "cus_1234567890abcdef"
+    stub_api_request(
+      :post,
+      "/v1/customer_identity_verifications/#{customer_id}",
+      "customer_identity_verification.json"
+    )
+
+    verification = Frame::CustomerIdentityVerification.create_for_customer(customer_id)
+
+    assert_equal "civ_1234567890abcdef", verification.id
+    assert_requested :post, "#{Frame.api_base}/v1/customer_identity_verifications/#{customer_id}", times: 1
+  end
+
   def test_list_customer_identity_verifications
     stub_api_request(
       :get,
