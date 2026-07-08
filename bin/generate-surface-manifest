@@ -61,6 +61,7 @@ CANONICAL_OVERRIDES = {
   "TermsOfService" => "termsOfService",
   "Billing" => "billing",       # singleton-ish namespace, not pluralized
   "Onboarding" => "onboarding", # singleton-ish namespace, not pluralized
+  "MerchantBalance" => "merchantBalance", # top-level singleton, not pluralized
   "Customer" => "customers",         # deprecated → accounts
   "ChargeIntent" => "chargeIntents", # deprecated → transfers
 }.freeze
