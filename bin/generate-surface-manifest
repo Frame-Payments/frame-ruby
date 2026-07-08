@@ -1,0 +1,165 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Surface manifest generator — frame-ruby (producer for the conformance audit).
+#
+# Emits the SDK's public resource/method surface as JSON per the schema pinned
+# in frame-docs CROSS_SDK_NAMING.md ("Surface-manifest schema (for the audit)"):
+#
+#   { "sdk", "version", "resources": { "<canonicalResource>": { "class",
+#     "methods": [ { "name", "deprecated" } ] } } }
+#
+# FRA-4516 (producer half). Consumed by the conformance audit in the frame
+# monolith (FRA-4457).
+#
+# Method surface = runtime reflection over each Frame::APIResource subclass:
+#   * public class (singleton) methods — how you call Frame::Transfer.create /
+#     .retrieve / .confirm — including operations mixed in via
+#     APIOperations::Create/List and `retrieve` inherited from APIResource, and
+#   * the instance-only operations `save` (canonical `update`) and `delete`
+#     contributed by APIOperations::Save / ::Delete.
+# Object/base plumbing is excluded (see PLUMBING).
+#
+# Deprecation = a `DEPRECATED_METHODS` constant on the resource class, e.g.
+#   DEPRECATED_METHODS = %i[get].freeze
+# (none exist yet; the M2 alias work adds them). Methods listed there are
+# flagged deprecated: true.
+#
+# Run: bin/generate-surface-manifest [--out PATH] [--stdout]
+
+require "json"
+
+repo_root = File.expand_path("..", __dir__)
+$LOAD_PATH.unshift(File.join(repo_root, "lib"))
+require "frame_payments"
+
+SDK_NAME = "frame-ruby"
+
+# Class/instance methods that are internal plumbing, never part of the public
+# operation surface. Derived empirically from Frame::APIResource + the
+# APIOperations mixins (see FRA-4516 notes).
+PLUMBING = %i[
+  class_name resource_url object_name construct_from request request_object
+  serialize_params refresh initialize_from new allocate
+].to_set.freeze
+
+# The instance-only operations contributed by the Save/Delete mixins that ARE
+# part of the public surface (called on an instance, e.g. `transfer.save`).
+INSTANCE_OPERATIONS = {
+  Frame::APIOperations::Save => :save,
+  Frame::APIOperations::Delete => :delete,
+}.freeze
+
+# ruby resource class (short name) → canonical resource key, for the handful
+# whose canonical name is not the naive camelCase pluralization of the class.
+# Everything else is derived by CANONICAL_RESOURCE below. Deprecated resources
+# (Customer, ChargeIntent) keep a legacy key so the audit can see + exclude them
+# from the parity denominator rather than silently dropping them.
+CANONICAL_OVERRIDES = {
+  "CustomerIdentityVerification" => "customerIdentityVerifications",
+  "ThreeDsIntent" => "threeDsIntents",
+  "TermsOfService" => "termsOfService",
+  "Billing" => "billing",       # singleton-ish namespace, not pluralized
+  "Onboarding" => "onboarding", # singleton-ish namespace, not pluralized
+  "MerchantBalance" => "merchantBalance", # top-level singleton, not pluralized
+  "Customer" => "customers",         # deprecated → accounts
+  "ChargeIntent" => "chargeIntents", # deprecated → transfers
+}.freeze
+
+# Derive canonical resource key: lower-camelCase, pluralized last word. Handles
+# the regular majority; irregulars live in CANONICAL_OVERRIDES.
+def canonical_resource(short_class_name)
+  return CANONICAL_OVERRIDES[short_class_name] if CANONICAL_OVERRIDES.key?(short_class_name)
+
+  words = short_class_name.scan(/[A-Z][a-z0-9]*/)
+  words[-1] = pluralize(words[-1])
+  head = words[0].downcase
+  camel_tail = words[1..].map(&:capitalize).join
+  head + camel_tail
+end
+
+# Minimal pluralizer for the resource nouns in this SDK (no irregulars per the
+# M0 inflector note). Mirrors the canonical inflector's simple rules.
+def pluralize(word)
+  return word if word.empty?
+
+  if word =~ /(s|x|z|ch|sh)$/i
+    "#{word}es"
+  elsif word =~ /[^aeiou]y$/i
+    "#{word[0..-2]}ies"
+  else
+    "#{word}s"
+  end
+end
+
+# Collect the public operation surface (method name symbols) for a resource.
+def surface_methods(klass)
+  names = []
+
+  # Public class (singleton) methods, minus generic Ruby noise and plumbing.
+  class_methods = klass.singleton_methods(true) -
+                  Class.singleton_methods - Module.singleton_methods - Object.singleton_methods
+  class_methods.each { |m| names << m unless PLUMBING.include?(m) }
+
+  # Instance-only operations from the Save/Delete mixins.
+  INSTANCE_OPERATIONS.each do |mod, op|
+    names << op if klass.include?(mod) && !PLUMBING.include?(op)
+  end
+
+  names.uniq.sort
+end
+
+def deprecated_set(klass)
+  return [].to_set unless klass.const_defined?(:DEPRECATED_METHODS, false)
+
+  Array(klass.const_get(:DEPRECATED_METHODS)).map(&:to_sym).to_set
+end
+
+def build_manifest
+  resources = {}
+
+  Frame::APIResource.subclasses.sort_by(&:name).each do |klass|
+    short = klass.name.split("::").last
+    deprecated = deprecated_set(klass)
+    methods = surface_methods(klass).map do |m|
+      { "name" => m.to_s, "deprecated" => deprecated.include?(m) }
+    end
+    resources[canonical_resource(short)] = {
+      "class" => short,
+      "methods" => methods,
+    }
+  end
+
+  {
+    "sdk" => SDK_NAME,
+    "version" => Frame::VERSION,
+    "resources" => resources.sort.to_h,
+  }
+end
+
+def main
+  out_path = File.join(File.expand_path("..", __dir__), "surface-manifest.json")
+  to_stdout = false
+
+  args = ARGV.dup
+  while (arg = args.shift)
+    case arg
+    when "--stdout" then to_stdout = true
+    when "--out" then out_path = args.shift
+    end
+  end
+
+  manifest = build_manifest
+  json = "#{JSON.pretty_generate(manifest)}\n"
+
+  if to_stdout
+    $stdout.write(json)
+  else
+    File.write(out_path, json)
+    method_count = manifest["resources"].values.sum { |r| r["methods"].size }
+    warn "Wrote #{out_path}: #{manifest['resources'].size} resources, " \
+         "#{method_count} methods (v#{manifest['version']})"
+  end
+end
+
+main
