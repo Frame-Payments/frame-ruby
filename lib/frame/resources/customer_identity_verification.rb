@@ -29,12 +29,14 @@ module Frame
     # Create an identity verification for an existing customer.
     # POST /v1/customer_identity_verifications/{customer_id}
     # (monolith customer_identity_verifications#create_from_customer).
-    def self.create_for_customer(customer_id, params = {}, opts = {})
+    # The documented route takes only the customer_id path param — no request
+    # body — so no params argument is exposed.
+    def self.create_for_customer(customer_id, opts = {})
       customer_id = Util.normalize_id(customer_id)
       request_object(
         :post,
         "/v1/customer_identity_verifications/#{CGI.escape(customer_id)}",
-        params,
+        {},
         opts
       )
     end
