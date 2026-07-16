@@ -206,4 +206,18 @@ class TestPaymentMethod < Minitest::Test
     assert_equal "payment_method", payment_method.object
     assert_requested :post, "#{Frame.api_base}/v1/payment_methods/connect_plaid", times: 1
   end
+
+  def test_class_update_payment_method
+    payment_method_id = "pm_1234567890abcdef"
+
+    stub_api_request(
+      :patch,
+      "/v1/payment_methods/#{payment_method_id}",
+      "payment_method.json"
+    )
+
+    payment_method = Frame::PaymentMethod.update(payment_method_id, metadata: {key: "value"})
+    assert_equal payment_method_id, payment_method.id
+    assert_requested :patch, "#{Frame.api_base}/v1/payment_methods/#{payment_method_id}", times: 1
+  end
 end

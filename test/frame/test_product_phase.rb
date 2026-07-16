@@ -121,4 +121,19 @@ class TestProductPhase < Minitest::Test
 
     assert_requested :delete, "#{Frame.api_base}/v1/products/#{product_id}/phases/#{phase_id}", times: 1
   end
+
+  def test_class_update_product_phase
+    product_id = "prod_1234567890abcdef"
+    phase_id = "pph_1234567890abcdef"
+
+    stub_api_request(
+      :patch,
+      "/v1/products/#{product_id}/phases/#{phase_id}",
+      "product_phase.json"
+    )
+
+    phase = Frame::ProductPhase.update(product_id, phase_id, price: 15000)
+    assert_equal phase_id, phase.id
+    assert_requested :patch, "#{Frame.api_base}/v1/products/#{product_id}/phases/#{phase_id}", times: 1
+  end
 end

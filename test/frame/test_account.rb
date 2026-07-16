@@ -195,4 +195,31 @@ class TestAccount < Minitest::Test
     Frame::Account.geo_compliance(account_id)
     assert_requested :get, "#{Frame.api_base}/v1/accounts/#{account_id}/geo_compliance", times: 1
   end
+
+  def test_get_geo_compliance
+    account_id = "acct_1234567890abcdef"
+
+    stub_api_request(
+      :get,
+      "/v1/accounts/#{account_id}/geo_compliance",
+      "account.json"
+    )
+
+    Frame::Account.get_geo_compliance(account_id)
+    assert_requested :get, "#{Frame.api_base}/v1/accounts/#{account_id}/geo_compliance", times: 1
+  end
+
+  def test_class_update_account
+    account_id = "acct_1234567890abcdef"
+
+    stub_api_request(
+      :patch,
+      "/v1/accounts/#{account_id}",
+      "account.json"
+    )
+
+    account = Frame::Account.update(account_id, external_id: "ext_123")
+    assert_equal account_id, account.id
+    assert_requested :patch, "#{Frame.api_base}/v1/accounts/#{account_id}", times: 1
+  end
 end

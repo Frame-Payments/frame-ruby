@@ -63,4 +63,13 @@ class TestPromotionCode < Minitest::Test
 
     assert_requested :patch, "#{Frame.api_base}/v1/promotion_codes/#{promo_id}", times: 1
   end
+
+  def test_class_update_promotion_code
+    promo_id = "promo_1234567890abcdef"
+    stub_api_request(:patch, "/v1/promotion_codes/#{promo_id}", "promotion_code.json")
+
+    promo = Frame::PromotionCode.update(promo_id, active: false)
+    assert_equal promo_id, promo.id
+    assert_requested :patch, "#{Frame.api_base}/v1/promotion_codes/#{promo_id}", times: 1
+  end
 end

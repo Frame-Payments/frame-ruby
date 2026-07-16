@@ -117,4 +117,19 @@ class TestInvoiceLineItem < Minitest::Test
 
     assert_requested :delete, "#{Frame.api_base}/v1/invoices/#{invoice_id}/line_items/#{line_item_id}", times: 1
   end
+
+  def test_class_update_invoice_line_item
+    invoice_id = "inv_1234567890abcdef"
+    line_item_id = "ili_1234567890abcdef"
+
+    stub_api_request(
+      :patch,
+      "/v1/invoices/#{invoice_id}/line_items/#{line_item_id}",
+      "invoice_line_item.json"
+    )
+
+    line_item = Frame::InvoiceLineItem.update(invoice_id, line_item_id, quantity: 2)
+    assert_equal line_item_id, line_item.id
+    assert_requested :patch, "#{Frame.api_base}/v1/invoices/#{invoice_id}/line_items/#{line_item_id}", times: 1
+  end
 end

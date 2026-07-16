@@ -12,6 +12,8 @@ module Frame
       OBJECT_NAME
     end
 
+    DEPRECATED_METHODS = %i[geo_compliance].freeze
+
     def self.create(params = {}, opts = {})
       request_object(:post, "/v1/accounts", params, opts)
     end
@@ -22,6 +24,10 @@ module Frame
 
     def self.retrieve(id, opts = {})
       request_object(:get, "/v1/accounts/#{CGI.escape(id)}", {}, opts)
+    end
+
+    def self.update(id, params = {}, opts = {})
+      request_object(:patch, "/v1/accounts/#{CGI.escape(id)}", params, opts)
     end
 
     def self.disable(id, params = {}, opts = {})
@@ -48,6 +54,11 @@ module Frame
       request_object(:post, "/v1/accounts/#{CGI.escape(id)}/unrestrict", {}, opts)
     end
 
+    def self.get_geo_compliance(id, opts = {})
+      request_object(:get, "/v1/accounts/#{CGI.escape(id)}/geo_compliance", {}, opts)
+    end
+
+    # @deprecated Use `get_geo_compliance` instead. Removed at v2.
     def self.geo_compliance(id, opts = {})
       request_object(:get, "/v1/accounts/#{CGI.escape(id)}/geo_compliance", {}, opts)
     end

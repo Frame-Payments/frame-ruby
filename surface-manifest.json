@@ -15,6 +15,10 @@
         },
         {
           "name": "geo_compliance",
+          "deprecated": true
+        },
+        {
+          "name": "get_geo_compliance",
           "deprecated": false
         },
         {
@@ -47,6 +51,10 @@
         },
         {
           "name": "unrestrict",
+          "deprecated": false
+        },
+        {
+          "name": "update",
           "deprecated": false
         }
       ]
@@ -85,18 +93,30 @@
         },
         {
           "name": "customer_report",
-          "deprecated": false
+          "deprecated": true
         },
         {
           "name": "event_report",
-          "deprecated": false
+          "deprecated": true
         },
         {
           "name": "events_report",
-          "deprecated": false
+          "deprecated": true
         },
         {
           "name": "get_billing_credit",
+          "deprecated": false
+        },
+        {
+          "name": "get_customer_report",
+          "deprecated": false
+        },
+        {
+          "name": "get_event_report",
+          "deprecated": false
+        },
+        {
+          "name": "get_events_report",
           "deprecated": false
         },
         {
@@ -108,12 +128,16 @@
           "deprecated": false
         },
         {
+          "name": "get_subscription_report",
+          "deprecated": false
+        },
+        {
           "name": "retrieve",
           "deprecated": false
         },
         {
           "name": "subscription_report",
-          "deprecated": false
+          "deprecated": true
         },
         {
           "name": "threshold_progress_report",
@@ -138,6 +162,10 @@
         },
         {
           "name": "list",
+          "deprecated": false
+        },
+        {
+          "name": "request",
           "deprecated": false
         },
         {
@@ -235,6 +263,10 @@
         {
           "name": "save",
           "deprecated": false
+        },
+        {
+          "name": "update",
+          "deprecated": false
         }
       ]
     },
@@ -246,8 +278,12 @@
           "deprecated": false
         },
         {
-          "name": "list",
+          "name": "create_for_customer",
           "deprecated": false
+        },
+        {
+          "name": "list",
+          "deprecated": true
         },
         {
           "name": "retrieve",
@@ -377,6 +413,10 @@
         {
           "name": "save",
           "deprecated": false
+        },
+        {
+          "name": "update",
+          "deprecated": false
         }
       ]
     },
@@ -405,6 +445,19 @@
         },
         {
           "name": "save",
+          "deprecated": false
+        },
+        {
+          "name": "update",
+          "deprecated": false
+        }
+      ]
+    },
+    "merchantBalance": {
+      "class": "MerchantBalance",
+      "methods": [
+        {
+          "name": "retrieve",
           "deprecated": false
         }
       ]
@@ -437,6 +490,10 @@
     "onboardingSessions": {
       "class": "OnboardingSession",
       "methods": [
+        {
+          "name": "bootstrap",
+          "deprecated": false
+        },
         {
           "name": "create",
           "deprecated": false
@@ -502,6 +559,10 @@
         {
           "name": "unblock",
           "deprecated": false
+        },
+        {
+          "name": "update",
+          "deprecated": false
         }
       ]
     },
@@ -561,6 +622,10 @@
         {
           "name": "save",
           "deprecated": false
+        },
+        {
+          "name": "update",
+          "deprecated": false
         }
       ]
     },
@@ -590,6 +655,10 @@
         {
           "name": "search",
           "deprecated": false
+        },
+        {
+          "name": "update",
+          "deprecated": false
         }
       ]
     },
@@ -610,6 +679,10 @@
         },
         {
           "name": "save",
+          "deprecated": false
+        },
+        {
+          "name": "update",
           "deprecated": false
         }
       ]
@@ -691,6 +764,10 @@
         {
           "name": "save",
           "deprecated": false
+        },
+        {
+          "name": "update",
+          "deprecated": false
         }
       ]
     },
@@ -715,6 +792,14 @@
         },
         {
           "name": "save",
+          "deprecated": false
+        },
+        {
+          "name": "search",
+          "deprecated": false
+        },
+        {
+          "name": "update",
           "deprecated": false
         }
       ]
@@ -841,6 +926,10 @@
         },
         {
           "name": "save",
+          "deprecated": false
+        },
+        {
+          "name": "update",
           "deprecated": false
         }
       ]

@@ -112,4 +112,19 @@ class TestSubscriptionPhase < Minitest::Test
 
     assert_requested :delete, "#{Frame.api_base}/v1/subscriptions/#{subscription_id}/phases/#{phase_id}", times: 1
   end
+
+  def test_class_update_subscription_phase
+    subscription_id = "sub_1234567890abcdef"
+    phase_id = "sph_1234567890abcdef"
+
+    stub_api_request(
+      :patch,
+      "/v1/subscriptions/#{subscription_id}/phases/#{phase_id}",
+      "subscription_phase.json"
+    )
+
+    phase = Frame::SubscriptionPhase.update(subscription_id, phase_id, metadata: {key: "value"})
+    assert_equal phase_id, phase.id
+    assert_requested :patch, "#{Frame.api_base}/v1/subscriptions/#{subscription_id}/phases/#{phase_id}", times: 1
+  end
 end

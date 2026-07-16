@@ -43,6 +43,14 @@ PLUMBING = %i[
   serialize_params refresh initialize_from new allocate
 ].to_set.freeze
 
+# A subset of PLUMBING whose name a resource may legitimately reclaim for a real
+# endpoint operation that shadows the inherited helper. Capability.request maps
+# to POST /v1/accounts/{id}/capabilities, shadowing the base HTTP `request`
+# helper — so it IS part of the public surface when defined directly on the
+# resource. (Contrast object_name, which every resource defines yet stays
+# plumbing.)
+SHADOWABLE_PLUMBING = %i[request].to_set.freeze
+
 # The instance-only operations contributed by the Save/Delete mixins that ARE
 # part of the public surface (called on an instance, e.g. `transfer.save`).
 INSTANCE_OPERATIONS = {
@@ -99,7 +107,11 @@ def surface_methods(klass)
   # Public class (singleton) methods, minus generic Ruby noise and plumbing.
   class_methods = klass.singleton_methods(true) -
                   Class.singleton_methods - Module.singleton_methods - Object.singleton_methods
-  class_methods.each { |m| names << m unless PLUMBING.include?(m) }
+  own = klass.singleton_methods(false).to_set
+  class_methods.each do |m|
+    next if PLUMBING.include?(m) && !(SHADOWABLE_PLUMBING.include?(m) && own.include?(m))
+    names << m
+  end
 
   # Instance-only operations from the Save/Delete mixins.
   INSTANCE_OPERATIONS.each do |mod, op|

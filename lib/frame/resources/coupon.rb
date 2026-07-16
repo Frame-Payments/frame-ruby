@@ -22,6 +22,10 @@ module Frame
       request_object(:get, "/v1/coupons/#{CGI.escape(id)}", {}, opts)
     end
 
+    def self.update(id, params = {}, opts = {})
+      request_object(:patch, "/v1/coupons/#{CGI.escape(id)}", params, opts)
+    end
+
     def save(params = {}, opts = {})
       values = serialize_params(self).merge(params)
       return self if values.empty?

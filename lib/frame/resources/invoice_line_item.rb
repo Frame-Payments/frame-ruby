@@ -40,6 +40,15 @@ module Frame
       )
     end
 
+    def self.update(invoice_id, id, params = {}, opts = {})
+      request_object(
+        :patch,
+        "/v1/invoices/#{CGI.escape(invoice_id)}/line_items/#{CGI.escape(id)}",
+        params,
+        opts
+      )
+    end
+
     def self.delete(invoice_id, id, params = {}, opts = {})
       request_object(
         :delete,

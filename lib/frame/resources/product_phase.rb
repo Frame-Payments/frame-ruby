@@ -40,6 +40,15 @@ module Frame
       )
     end
 
+    def self.update(product_id, id, params = {}, opts = {})
+      request_object(
+        :patch,
+        "/v1/products/#{CGI.escape(product_id)}/phases/#{CGI.escape(id)}",
+        params,
+        opts
+      )
+    end
+
     def self.bulk_update(product_id, phases, opts = {})
       request_object(
         :patch,

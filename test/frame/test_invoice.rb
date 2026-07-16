@@ -138,4 +138,18 @@ class TestInvoice < Minitest::Test
 
     assert_requested :delete, "#{Frame.api_base}/v1/invoices/#{invoice_id}", times: 1
   end
+
+  def test_class_update_invoice
+    invoice_id = "inv_1234567890abcdef"
+
+    stub_api_request(
+      :patch,
+      "/v1/invoices/#{invoice_id}",
+      "invoice.json"
+    )
+
+    invoice = Frame::Invoice.update(invoice_id, total: 15000)
+    assert_equal invoice_id, invoice.id
+    assert_requested :patch, "#{Frame.api_base}/v1/invoices/#{invoice_id}", times: 1
+  end
 end
