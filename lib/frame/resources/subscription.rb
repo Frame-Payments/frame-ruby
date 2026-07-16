@@ -85,10 +85,46 @@ module Frame
       )
     end
 
+    def pause(params = {}, opts = {})
+      request_object(
+        :post,
+        "/v1/subscriptions/#{CGI.escape(self["id"])}/pause",
+        params,
+        opts
+      )
+    end
+
+    def resume(params = {}, opts = {})
+      request_object(
+        :post,
+        "/v1/subscriptions/#{CGI.escape(self["id"])}/resume",
+        params,
+        opts
+      )
+    end
+
     def self.cancel(id, params = {}, opts = {})
       request_object(
         :post,
         "/v1/subscriptions/#{CGI.escape(id)}/cancel",
+        params,
+        opts
+      )
+    end
+
+    def self.pause(id, params = {}, opts = {})
+      request_object(
+        :post,
+        "/v1/subscriptions/#{CGI.escape(id)}/pause",
+        params,
+        opts
+      )
+    end
+
+    def self.resume(id, params = {}, opts = {})
+      request_object(
+        :post,
+        "/v1/subscriptions/#{CGI.escape(id)}/resume",
         params,
         opts
       )
