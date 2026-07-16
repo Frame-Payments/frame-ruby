@@ -115,6 +115,28 @@ class TestSubscription < Minitest::Test
     assert_requested :post, "#{Frame.api_base}/v1/subscriptions/#{subscription_id}/cancel", times: 1
   end
 
+  def test_pause_subscription
+    subscription_id = "sub_1234567890abcdef"
+
+    stub_api_request(:post, "/v1/subscriptions/#{subscription_id}/pause", "subscription.json")
+
+    paused = Frame::Subscription.pause(subscription_id)
+
+    assert_equal subscription_id, paused.id
+    assert_requested :post, "#{Frame.api_base}/v1/subscriptions/#{subscription_id}/pause", times: 1
+  end
+
+  def test_resume_subscription
+    subscription_id = "sub_1234567890abcdef"
+
+    stub_api_request(:post, "/v1/subscriptions/#{subscription_id}/resume", "subscription.json")
+
+    resumed = Frame::Subscription.resume(subscription_id)
+
+    assert_equal subscription_id, resumed.id
+    assert_requested :post, "#{Frame.api_base}/v1/subscriptions/#{subscription_id}/resume", times: 1
+  end
+
   def test_class_update_subscription
     subscription_id = "sub_1234567890abcdef"
 
