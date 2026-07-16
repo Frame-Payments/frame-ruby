@@ -79,6 +79,51 @@ class TestBilling < Minitest::Test
     assert_requested :get, "#{Frame.api_base}/v1/billing/report/customer", times: 1
   end
 
+  def test_get_customer_report
+    stub_api_request(
+      :get,
+      "/v1/billing/report/customer",
+      "billing_customer_report.json"
+    )
+
+    Frame::Billing.get_customer_report
+    assert_requested :get, "#{Frame.api_base}/v1/billing/report/customer", times: 1
+  end
+
+  def test_get_event_report
+    event_name = "api_calls"
+    stub_api_request(
+      :get,
+      "/v1/billing/report/event/#{event_name}",
+      "billing_customer_report.json"
+    )
+
+    Frame::Billing.get_event_report(event_name)
+    assert_requested :get, "#{Frame.api_base}/v1/billing/report/event/#{event_name}", times: 1
+  end
+
+  def test_get_events_report
+    stub_api_request(
+      :get,
+      "/v1/billing/report/events",
+      "billing_customer_report.json"
+    )
+
+    Frame::Billing.get_events_report
+    assert_requested :get, "#{Frame.api_base}/v1/billing/report/events", times: 1
+  end
+
+  def test_get_subscription_report
+    stub_api_request(
+      :get,
+      "/v1/billing/report/subscription",
+      "billing_customer_report.json"
+    )
+
+    Frame::Billing.get_subscription_report
+    assert_requested :get, "#{Frame.api_base}/v1/billing/report/subscription", times: 1
+  end
+
   def test_threshold_progress_report
     stub_api_request(
       :get,

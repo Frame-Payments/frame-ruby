@@ -40,6 +40,15 @@ module Frame
       )
     end
 
+    def self.update(id, params = {}, opts = {})
+      request_object(
+        :patch,
+        "/v1/payment_methods/#{CGI.escape(id)}",
+        params,
+        opts
+      )
+    end
+
     def self.connect_plaid(params = {}, opts = {})
       request_object(
         :post,

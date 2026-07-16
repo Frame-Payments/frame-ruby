@@ -130,4 +130,18 @@ class TestProduct < Minitest::Test
       query: {name: "Test"},
       times: 1
   end
+
+  def test_class_update_product
+    product_id = "prod_1234567890abcdef"
+
+    stub_api_request(
+      :patch,
+      "/v1/products/#{product_id}",
+      "product.json"
+    )
+
+    product = Frame::Product.update(product_id, name: "Updated Plan")
+    assert_equal product_id, product.id
+    assert_requested :patch, "#{Frame.api_base}/v1/products/#{product_id}", times: 1
+  end
 end

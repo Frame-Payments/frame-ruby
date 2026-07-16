@@ -40,6 +40,24 @@ module Frame
       )
     end
 
+    def self.update(id, params = {}, opts = {})
+      request_object(
+        :patch,
+        "/v1/subscriptions/#{CGI.escape(id)}",
+        params,
+        opts
+      )
+    end
+
+    def self.search(params = {}, opts = {})
+      request_object(
+        :get,
+        "/v1/subscriptions/search",
+        params,
+        opts
+      )
+    end
+
     def save(params = {}, opts = {})
       values = serialize_params(self).merge(params)
 

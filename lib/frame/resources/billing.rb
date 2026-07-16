@@ -8,6 +8,8 @@ module Frame
       OBJECT_NAME
     end
 
+    DEPRECATED_METHODS = %i[customer_report event_report events_report subscription_report].freeze
+
     def self.create_metering(params = {}, opts = {})
       request_object(:post, "/v1/billing/metering", params, opts)
     end
@@ -44,18 +46,38 @@ module Frame
       request_object(:get, "/v1/billing/billing_credit/#{CGI.escape(id)}", {}, opts)
     end
 
+    def self.get_customer_report(params = {}, opts = {})
+      request_object(:get, "/v1/billing/report/customer", params, opts)
+    end
+
+    # @deprecated Use `get_customer_report` instead. Removed at v2.
     def self.customer_report(params = {}, opts = {})
       request_object(:get, "/v1/billing/report/customer", params, opts)
     end
 
+    def self.get_event_report(event_name, params = {}, opts = {})
+      request_object(:get, "/v1/billing/report/event/#{CGI.escape(event_name)}", params, opts)
+    end
+
+    # @deprecated Use `get_event_report` instead. Removed at v2.
     def self.event_report(event_name, params = {}, opts = {})
       request_object(:get, "/v1/billing/report/event/#{CGI.escape(event_name)}", params, opts)
     end
 
+    def self.get_events_report(params = {}, opts = {})
+      request_object(:get, "/v1/billing/report/events", params, opts)
+    end
+
+    # @deprecated Use `get_events_report` instead. Removed at v2.
     def self.events_report(params = {}, opts = {})
       request_object(:get, "/v1/billing/report/events", params, opts)
     end
 
+    def self.get_subscription_report(params = {}, opts = {})
+      request_object(:get, "/v1/billing/report/subscription", params, opts)
+    end
+
+    # @deprecated Use `get_subscription_report` instead. Removed at v2.
     def self.subscription_report(params = {}, opts = {})
       request_object(:get, "/v1/billing/report/subscription", params, opts)
     end

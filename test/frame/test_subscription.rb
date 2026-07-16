@@ -114,4 +114,34 @@ class TestSubscription < Minitest::Test
 
     assert_requested :post, "#{Frame.api_base}/v1/subscriptions/#{subscription_id}/cancel", times: 1
   end
+
+  def test_class_update_subscription
+    subscription_id = "sub_1234567890abcdef"
+
+    stub_api_request(
+      :patch,
+      "/v1/subscriptions/#{subscription_id}",
+      "subscription.json"
+    )
+
+    subscription = Frame::Subscription.update(subscription_id, metadata: {key: "value"})
+    assert_equal subscription_id, subscription.id
+    assert_requested :patch, "#{Frame.api_base}/v1/subscriptions/#{subscription_id}", times: 1
+  end
+
+  def test_search_subscriptions
+    stub_api_request(
+      :get,
+      "/v1/subscriptions/search",
+      "subscriptions_list.json",
+      request_params: {status: "active"}
+    )
+
+    subscriptions = Frame::Subscription.search(status: "active")
+
+    assert_equal 2, subscriptions.data.size
+    assert_requested :get, "#{Frame.api_base}/v1/subscriptions/search",
+      query: {status: "active"},
+      times: 1
+  end
 end

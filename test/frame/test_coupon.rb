@@ -65,4 +65,13 @@ class TestCoupon < Minitest::Test
 
     assert_requested :patch, "#{Frame.api_base}/v1/coupons/#{coupon_id}", times: 1
   end
+
+  def test_class_update_coupon
+    coupon_id = "cpn_1234567890abcdef"
+    stub_api_request(:patch, "/v1/coupons/#{coupon_id}", "coupon.json")
+
+    coupon = Frame::Coupon.update(coupon_id, name: "Updated Coupon")
+    assert_equal coupon_id, coupon.id
+    assert_requested :patch, "#{Frame.api_base}/v1/coupons/#{coupon_id}", times: 1
+  end
 end
