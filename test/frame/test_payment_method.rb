@@ -42,6 +42,82 @@ class TestPaymentMethod < Minitest::Test
     assert_equal "payment_method", payment_method.object
   end
 
+  def test_create_card_payment_method
+    stub_api_request(
+      :post,
+      "/v1/payment_methods",
+      "payment_method.json"
+    )
+
+    payment_method = Frame::PaymentMethod.create_card(
+      type: "card",
+      card: {
+        number: "4242424242424242",
+        exp_month: 12,
+        exp_year: 2025
+      }
+    )
+
+    assert_equal "pm_1234567890abcdef", payment_method.id
+    assert_equal "card", payment_method.type
+    assert_equal "payment_method", payment_method.object
+  end
+
+  def test_create_bank_account_payment_method
+    stub_api_request(
+      :post,
+      "/v1/payment_methods",
+      "payment_method.json"
+    )
+
+    payment_method = Frame::PaymentMethod.create_bank_account(
+      type: "bank_account",
+      bank_account: {
+        account_number: "000123456789",
+        routing_number: "110000000"
+      }
+    )
+
+    assert_equal "pm_1234567890abcdef", payment_method.id
+    assert_equal "payment_method", payment_method.object
+  end
+
+  def test_create_apple_pay_payment_method
+    stub_api_request(
+      :post,
+      "/v1/payment_methods",
+      "payment_method.json"
+    )
+
+    payment_method = Frame::PaymentMethod.create_apple_pay(
+      type: "apple_pay",
+      apple_pay: {
+        token: "tok_apple_123"
+      }
+    )
+
+    assert_equal "pm_1234567890abcdef", payment_method.id
+    assert_equal "payment_method", payment_method.object
+  end
+
+  def test_create_google_pay_payment_method
+    stub_api_request(
+      :post,
+      "/v1/payment_methods",
+      "payment_method.json"
+    )
+
+    payment_method = Frame::PaymentMethod.create_google_pay(
+      type: "google_pay",
+      google_pay: {
+        token: "tok_google_123"
+      }
+    )
+
+    assert_equal "pm_1234567890abcdef", payment_method.id
+    assert_equal "payment_method", payment_method.object
+  end
+
   def test_update_payment_method
     payment_method_id = "pm_1234567890abcdef"
 
