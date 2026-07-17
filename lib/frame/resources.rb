@@ -5,6 +5,7 @@
 
 # Accounts
 require "frame/resources/account"
+require "frame/resources/beneficial_owner"
 require "frame/resources/capability"
 require "frame/resources/phone_verification"
 

@@ -72,6 +72,39 @@
         }
       ]
     },
+    "beneficialOwners": {
+      "class": "BeneficialOwner",
+      "methods": [
+        {
+          "name": "confirm_roster",
+          "deprecated": false
+        },
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "delete",
+          "deprecated": false
+        },
+        {
+          "name": "list",
+          "deprecated": false
+        },
+        {
+          "name": "resend_invite",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        },
+        {
+          "name": "update",
+          "deprecated": false
+        }
+      ]
+    },
     "billing": {
       "class": "Billing",
       "methods": [
@@ -608,7 +641,7 @@
         },
         {
           "name": "retrieve",
-          "deprecated": false
+          "deprecated": true
         }
       ]
     },

@@ -8,6 +8,12 @@ module Frame
       OBJECT_NAME
     end
 
+    # `retrieve` is inherited from APIResource but the API exposes no
+    # `GET /phone_verifications/{id}` endpoint — the canonical surface is
+    # create + confirm only. Flag it deprecated so it stays out of the parity
+    # denominator; removed at v2.
+    DEPRECATED_METHODS = %i[retrieve].freeze
+
     def self.create(account_id, params = {}, opts = {})
       request_object(:post, "/v1/accounts/#{CGI.escape(account_id)}/phone_verifications", params, opts)
     end

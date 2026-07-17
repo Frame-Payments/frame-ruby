@@ -1,0 +1,16 @@
+{
+  "id": "bo_1234567890abcdef",
+  "object": "beneficial_owner",
+  "account_id": "acct_123",
+  "first_name": "Janet",
+  "middle_name": null,
+  "last_name": "Jones",
+  "suffix": null,
+  "email": "janet@example.com",
+  "roles": ["owner", "controller"],
+  "percent_ownership": 50.0,
+  "status": "completed",
+  "livemode": false,
+  "created": 1745107200,
+  "updated": 1745107200
+}
