@@ -21,6 +21,42 @@ module Frame
       )
     end
 
+    def self.create_card(params = {}, opts = {})
+      request_object(
+        :post,
+        "/v1/payment_methods",
+        params,
+        opts
+      )
+    end
+
+    def self.create_bank_account(params = {}, opts = {})
+      request_object(
+        :post,
+        "/v1/payment_methods",
+        params,
+        opts
+      )
+    end
+
+    def self.create_apple_pay(params = {}, opts = {})
+      request_object(
+        :post,
+        "/v1/payment_methods",
+        params,
+        opts
+      )
+    end
+
+    def self.create_google_pay(params = {}, opts = {})
+      request_object(
+        :post,
+        "/v1/payment_methods",
+        params,
+        opts
+      )
+    end
+
     def self.list(params = {}, opts = {})
       request_object(
         :get,

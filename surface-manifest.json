@@ -541,6 +541,22 @@
           "deprecated": false
         },
         {
+          "name": "create_apple_pay",
+          "deprecated": false
+        },
+        {
+          "name": "create_bank_account",
+          "deprecated": false
+        },
+        {
+          "name": "create_card",
+          "deprecated": false
+        },
+        {
+          "name": "create_google_pay",
+          "deprecated": false
+        },
+        {
           "name": "detach",
           "deprecated": false
         },
