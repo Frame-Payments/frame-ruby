@@ -212,35 +212,35 @@
       "methods": [
         {
           "name": "cancel",
-          "deprecated": false
+          "deprecated": true
         },
         {
           "name": "capture",
-          "deprecated": false
+          "deprecated": true
         },
         {
           "name": "confirm",
-          "deprecated": false
+          "deprecated": true
         },
         {
           "name": "create",
-          "deprecated": false
+          "deprecated": true
         },
         {
           "name": "list",
-          "deprecated": false
+          "deprecated": true
         },
         {
           "name": "retrieve",
-          "deprecated": false
+          "deprecated": true
         },
         {
           "name": "save",
-          "deprecated": false
+          "deprecated": true
         },
         {
           "name": "void_remaining",
-          "deprecated": false
+          "deprecated": true
         }
       ]
     },
