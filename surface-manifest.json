@@ -6,6 +6,10 @@
       "class": "Account",
       "methods": [
         {
+          "name": "confirm_kyc_prefill",
+          "deprecated": false
+        },
+        {
           "name": "create",
           "deprecated": false
         },
@@ -333,7 +337,7 @@
       "methods": [
         {
           "name": "block",
-          "deprecated": false
+          "deprecated": true
         },
         {
           "name": "create",
@@ -341,7 +345,7 @@
         },
         {
           "name": "delete",
-          "deprecated": false
+          "deprecated": true
         },
         {
           "name": "list",
@@ -349,7 +353,7 @@
         },
         {
           "name": "payment_methods",
-          "deprecated": false
+          "deprecated": true
         },
         {
           "name": "retrieve",
@@ -365,7 +369,7 @@
         },
         {
           "name": "unblock",
-          "deprecated": false
+          "deprecated": true
         }
       ]
     },

@@ -196,4 +196,48 @@ class TestCustomer < Minitest::Test
     # Verify the request was made
     assert_requested :post, "#{Frame.api_base}/v1/customers/#{customer_id}/unblock", times: 1
   end
+
+  # Deprecated (M2 demotion) — still functional against /v1/customers/*.
+
+  def test_class_block_customer_still_functional
+    customer_id = "55435398-ec47-4bb4-ac9e-64031481cf48"
+
+    stub_api_request(
+      :post,
+      "/v1/customers/#{customer_id}/block",
+      "blocked_customer.json"
+    )
+
+    blocked_customer = Frame::Customer.block(customer_id)
+    assert_equal "blocked", blocked_customer.status
+    assert_requested :post, "#{Frame.api_base}/v1/customers/#{customer_id}/block", times: 1
+  end
+
+  def test_class_unblock_customer_still_functional
+    customer_id = "55435398-ec47-4bb4-ac9e-64031481cf48"
+
+    stub_api_request(
+      :post,
+      "/v1/customers/#{customer_id}/unblock",
+      "unblocked_customer.json"
+    )
+
+    unblocked_customer = Frame::Customer.unblock(customer_id)
+    assert_equal "active", unblocked_customer.status
+    assert_requested :post, "#{Frame.api_base}/v1/customers/#{customer_id}/unblock", times: 1
+  end
+
+  def test_payment_methods_still_functional
+    customer_id = "55435398-ec47-4bb4-ac9e-64031481cf48"
+
+    stub_api_request(
+      :get,
+      "/v1/customers/#{customer_id}/payment_methods",
+      "payment_methods_list.json"
+    )
+
+    payment_methods = Frame::Customer.payment_methods(customer_id)
+    assert_equal 2, payment_methods.data.size
+    assert_requested :get, "#{Frame.api_base}/v1/customers/#{customer_id}/payment_methods", times: 1
+  end
 end

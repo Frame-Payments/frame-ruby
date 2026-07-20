@@ -13,6 +13,11 @@ module Frame
       OBJECT_NAME
     end
 
+    # Customers are deprecated in favor of Accounts (M2 demotion). Only methods
+    # with a clear cross-resource target are demoted; create/retrieve/list/
+    # search/save stay non-deprecated pending an unambiguous mapping.
+    DEPRECATED_METHODS = %i[delete block unblock payment_methods].freeze
+
     def self.create(params = {}, opts = {})
       request_object(
         :post,
@@ -50,6 +55,7 @@ module Frame
       )
     end
 
+    # @deprecated Use `Account.disable` instead. Removed at v2.
     def self.delete(id, params = {}, opts = {})
       request_object(
         :delete,
@@ -59,6 +65,7 @@ module Frame
       )
     end
 
+    # @deprecated Account.block pending a monolith route; no re-route yet. Removed at v2.
     def block(params = {}, opts = {})
       request_object(
         :post,
@@ -68,6 +75,7 @@ module Frame
       )
     end
 
+    # @deprecated Account.block pending a monolith route; no re-route yet. Removed at v2.
     def self.block(id, params = {}, opts = {})
       request_object(
         :post,
@@ -77,6 +85,7 @@ module Frame
       )
     end
 
+    # @deprecated Account.unblock pending a monolith route; no re-route yet. Removed at v2.
     def unblock(params = {}, opts = {})
       request_object(
         :post,
@@ -86,6 +95,7 @@ module Frame
       )
     end
 
+    # @deprecated Account.unblock pending a monolith route; no re-route yet. Removed at v2.
     def self.unblock(id, params = {}, opts = {})
       request_object(
         :post,
@@ -95,6 +105,7 @@ module Frame
       )
     end
 
+    # @deprecated Use `PaymentMethod.list(account_id:)` instead (FRA-4461). Removed at v2.
     def self.payment_methods(id, opts = {})
       request_object(
         :get,
@@ -122,6 +133,7 @@ module Frame
       self
     end
 
+    # @deprecated Use `Account.disable` instead. Removed at v2.
     def delete(params = {}, opts = {})
       request_object(
         :delete,
