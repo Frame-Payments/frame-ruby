@@ -624,7 +624,7 @@
         },
         {
           "name": "retrieve",
-          "deprecated": false
+          "deprecated": true
         }
       ]
     },
