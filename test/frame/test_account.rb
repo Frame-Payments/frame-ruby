@@ -209,6 +209,20 @@ class TestAccount < Minitest::Test
     assert_requested :get, "#{Frame.api_base}/v1/accounts/#{account_id}/geo_compliance", times: 1
   end
 
+  def test_confirm_kyc_prefill
+    account_id = "acct_1234567890abcdef"
+
+    stub_api_request(
+      :post,
+      "/v1/accounts/#{account_id}/kyc_prefill/confirm",
+      "account.json"
+    )
+
+    account = Frame::Account.confirm_kyc_prefill(account_id)
+    assert_equal account_id, account.id
+    assert_requested :post, "#{Frame.api_base}/v1/accounts/#{account_id}/kyc_prefill/confirm", times: 1
+  end
+
   def test_class_update_account
     account_id = "acct_1234567890abcdef"
 

@@ -58,6 +58,10 @@ module Frame
       request_object(:get, "/v1/accounts/#{CGI.escape(id)}/geo_compliance", {}, opts)
     end
 
+    def self.confirm_kyc_prefill(id, opts = {})
+      request_object(:post, "/v1/accounts/#{CGI.escape(id)}/kyc_prefill/confirm", {}, opts)
+    end
+
     # @deprecated Use `get_geo_compliance` instead. Removed at v2.
     def self.geo_compliance(id, opts = {})
       request_object(:get, "/v1/accounts/#{CGI.escape(id)}/geo_compliance", {}, opts)
