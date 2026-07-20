@@ -1,6 +1,6 @@
 {
   "sdk": "frame-ruby",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "resources": {
     "accounts": {
       "class": "Account",
