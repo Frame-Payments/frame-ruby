@@ -12,6 +12,9 @@ module Frame
       OBJECT_NAME
     end
 
+    DEPRECATED_METHODS = %i[create retrieve list confirm capture cancel void_remaining save].freeze
+
+    # @deprecated Use Frame::Transfer.create instead. Removed at v2.
     def self.create(params = {}, opts = {})
       request_object(
         :post,
@@ -21,6 +24,7 @@ module Frame
       )
     end
 
+    # @deprecated Use Frame::Transfer.list instead. Removed at v2.
     def self.list(params = {}, opts = {})
       request_object(
         :get,
@@ -30,6 +34,7 @@ module Frame
       )
     end
 
+    # @deprecated Use Frame::Transfer.retrieve instead. Removed at v2.
     def self.retrieve(id, opts = {})
       id = Util.normalize_id(id)
       request_object(
@@ -40,6 +45,7 @@ module Frame
       )
     end
 
+    # @deprecated Use Frame::Transfer.confirm instead. Removed at v2.
     def confirm(params = {}, opts = {})
       request_object(
         :post,
@@ -49,6 +55,7 @@ module Frame
       )
     end
 
+    # @deprecated Use Frame::Transfer.confirm instead. Removed at v2.
     def self.confirm(id, params = {}, opts = {})
       request_object(
         :post,
@@ -58,6 +65,7 @@ module Frame
       )
     end
 
+    # @deprecated Removed at v2. No canonical transfer equivalent yet (FRA-4463).
     def capture(params = {}, opts = {})
       request_object(
         :post,
@@ -67,6 +75,7 @@ module Frame
       )
     end
 
+    # @deprecated Removed at v2. No canonical transfer equivalent yet (FRA-4463).
     def self.capture(id, params = {}, opts = {})
       request_object(
         :post,
@@ -76,6 +85,7 @@ module Frame
       )
     end
 
+    # @deprecated Removed at v2. No canonical transfer equivalent yet (FRA-4463).
     def cancel(params = {}, opts = {})
       request_object(
         :post,
@@ -85,6 +95,7 @@ module Frame
       )
     end
 
+    # @deprecated Removed at v2. No canonical transfer equivalent yet (FRA-4463).
     def self.cancel(id, params = {}, opts = {})
       request_object(
         :post,
@@ -94,6 +105,7 @@ module Frame
       )
     end
 
+    # @deprecated Removed at v2. No canonical transfer equivalent yet (FRA-4463).
     def void_remaining(params = {}, opts = {})
       request_object(
         :post,
@@ -103,6 +115,7 @@ module Frame
       )
     end
 
+    # @deprecated Removed at v2. No canonical transfer equivalent yet (FRA-4463).
     def self.void_remaining(id, params = {}, opts = {})
       request_object(
         :post,
@@ -112,6 +125,7 @@ module Frame
       )
     end
 
+    # @deprecated Removed at v2. No canonical transfer equivalent yet (FRA-4463).
     def save(params = {}, opts = {})
       values = serialize_params(self).merge(params)
 

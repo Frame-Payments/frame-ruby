@@ -192,4 +192,37 @@ class TestChargeIntent < Minitest::Test
 
     assert_requested :post, "#{Frame.api_base}/v1/charge_intents/#{charge_intent_id}/cancel", times: 1
   end
+
+  def test_void_remaining_charge_intent
+    charge_intent_id = "ci_1234567890abcdef"
+
+    stub_api_request(
+      :get,
+      "/v1/charge_intents/#{charge_intent_id}",
+      "charge_intent.json"
+    )
+
+    stub_api_request(
+      :post,
+      "/v1/charge_intents/#{charge_intent_id}/void_remaining",
+      "charge_intent.json"
+    )
+
+    charge_intent = Frame::ChargeIntent.retrieve(charge_intent_id)
+    voided_intent = charge_intent.void_remaining
+
+    assert_equal charge_intent_id, voided_intent.id
+
+    assert_requested :post, "#{Frame.api_base}/v1/charge_intents/#{charge_intent_id}/void_remaining", times: 1
+  end
+
+  # FRA-4462: chargeIntents is demoted in favor of transfers. The methods must
+  # remain fully functional (verified by the tests above) but be flagged
+  # deprecated in the surface manifest via DEPRECATED_METHODS.
+  def test_deprecated_methods_are_registered
+    expected = %i[create retrieve list confirm capture cancel void_remaining save]
+
+    assert Frame::ChargeIntent.const_defined?(:DEPRECATED_METHODS, false)
+    assert_equal expected.sort, Frame::ChargeIntent::DEPRECATED_METHODS.sort
+  end
 end
