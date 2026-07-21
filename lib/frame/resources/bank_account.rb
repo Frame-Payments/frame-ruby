@@ -13,5 +13,9 @@ module Frame
     def self.create(params = {}, opts = {})
       request_object(:post, "/v1/bank_accounts", params, opts)
     end
+
+    def self.retrieve(id, opts = {})
+      request_object(:get, "/v1/bank_accounts/#{CGI.escape(id)}", {}, opts)
+    end
   end
 end

@@ -22,4 +22,15 @@ class TestBankAccount < Minitest::Test
     assert_equal "active", bank_account.status
     assert_requested :post, "#{Frame.api_base}/v1/bank_accounts", times: 1
   end
+
+  def test_retrieve_bank_account
+    stub_api_request(:get, "/v1/bank_accounts/ba_1234567890abcdef", "bank_account.json")
+
+    bank_account = Frame::BankAccount.retrieve("ba_1234567890abcdef")
+
+    assert_equal "ba_1234567890abcdef", bank_account.id
+    assert_equal "bank_account", bank_account.object
+    assert_equal "active", bank_account.status
+    assert_requested :get, "#{Frame.api_base}/v1/bank_accounts/ba_1234567890abcdef", times: 1
+  end
 end
