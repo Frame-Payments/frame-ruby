@@ -184,6 +184,30 @@ class TestSubscription < Minitest::Test
     assert_requested :delete, "#{Frame.api_base}/v1/subscriptions/#{subscription_id}/scheduled_change", times: 1
   end
 
+  def test_cancel_scheduled_change_on_instance
+    subscription_id = "sub_1234567890abcdef"
+
+    stub_api_request(
+      :get,
+      "/v1/subscriptions/#{subscription_id}",
+      "subscription_with_scheduled_change.json"
+    )
+
+    stub_api_request(
+      :delete,
+      "/v1/subscriptions/#{subscription_id}/scheduled_change",
+      "subscription_scheduled_change_cancelled.json"
+    )
+
+    subscription = Frame::Subscription.retrieve(subscription_id)
+    cancelled = subscription.cancel_scheduled_change
+
+    assert_equal subscription_id, cancelled.id
+    assert_nil cancelled.scheduled_change
+
+    assert_requested :delete, "#{Frame.api_base}/v1/subscriptions/#{subscription_id}/scheduled_change", times: 1
+  end
+
   def test_scheduled_change_attribute_exposed
     subscription_id = "sub_1234567890abcdef"
 
