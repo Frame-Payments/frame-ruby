@@ -832,6 +832,10 @@
           "deprecated": false
         },
         {
+          "name": "cancel_scheduled_change",
+          "deprecated": false
+        },
+        {
           "name": "create",
           "deprecated": false
         },
