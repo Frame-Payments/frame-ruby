@@ -103,6 +103,15 @@ module Frame
       )
     end
 
+    def cancel_scheduled_change(params = {}, opts = {})
+      request_object(
+        :delete,
+        "/v1/subscriptions/#{CGI.escape(self["id"])}/scheduled_change",
+        params,
+        opts
+      )
+    end
+
     def self.cancel(id, params = {}, opts = {})
       request_object(
         :post,
@@ -125,6 +134,15 @@ module Frame
       request_object(
         :post,
         "/v1/subscriptions/#{CGI.escape(id)}/resume",
+        params,
+        opts
+      )
+    end
+
+    def self.cancel_scheduled_change(id, params = {}, opts = {})
+      request_object(
+        :delete,
+        "/v1/subscriptions/#{CGI.escape(id)}/scheduled_change",
         params,
         opts
       )
