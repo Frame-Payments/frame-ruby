@@ -966,6 +966,43 @@
         }
       ]
     },
+    "transfersV2": {
+      "class": "TransferV2",
+      "methods": [
+        {
+          "name": "capture",
+          "deprecated": false
+        },
+        {
+          "name": "confirm",
+          "deprecated": false
+        },
+        {
+          "name": "create",
+          "deprecated": false
+        },
+        {
+          "name": "list",
+          "deprecated": false
+        },
+        {
+          "name": "refund",
+          "deprecated": false
+        },
+        {
+          "name": "retrieve",
+          "deprecated": false
+        },
+        {
+          "name": "update",
+          "deprecated": false
+        },
+        {
+          "name": "void",
+          "deprecated": false
+        }
+      ]
+    },
     "webhookEndpoints": {
       "class": "WebhookEndpoint",
       "methods": [

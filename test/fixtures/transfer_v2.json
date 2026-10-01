@@ -1,0 +1,27 @@
+{
+  "id": "tr_v2_1234567890abcdef",
+  "object": "transfer",
+  "type": "payment",
+  "status": "pending",
+  "description": "Test V2 transfer",
+  "amount": { "value": 10000, "currency": "usd" },
+  "fee": { "value": 30, "currency": "usd" },
+  "net_amount": { "value": 9970, "currency": "usd" },
+  "livemode": false,
+  "created": 1640995200,
+  "reference": "ref_abc",
+  "metadata": {},
+  "source": {
+    "payment_method": {
+      "id": "pm_src_123",
+      "object": "payment_method",
+      "type": "card"
+    }
+  },
+  "destination": null,
+  "payment": {
+    "status": "pending",
+    "authorization_mode": "automatic"
+  },
+  "client_secret": "tr_v2_1234567890abcdef_secret_abc"
+}

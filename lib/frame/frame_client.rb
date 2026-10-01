@@ -84,6 +84,7 @@ module Frame
         "Content-Type" => "application/json",
         "User-Agent" => "FrameRuby/#{Frame::VERSION}"
       }
+      headers.merge!(opts[:headers]) if opts[:headers].is_a?(Hash)
 
       log_request(method, path, params, headers) if should_log?
 

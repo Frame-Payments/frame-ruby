@@ -72,6 +72,7 @@ CANONICAL_OVERRIDES = {
   "MerchantBalance" => "merchantBalance", # top-level singleton, not pluralized
   "Customer" => "customers",         # deprecated → accounts
   "ChargeIntent" => "chargeIntents", # deprecated → transfers
+  "TransferV2" => "transfersV2",
 }.freeze
 
 # Derive canonical resource key: lower-camelCase, pluralized last word. Handles
