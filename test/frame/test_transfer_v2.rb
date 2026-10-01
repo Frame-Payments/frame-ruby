@@ -15,7 +15,7 @@ class TestTransferV2 < Minitest::Test
       headers["Idempotency-Key"] = idempotency_key
     end
 
-    stub = stub_request(:post, "#{Frame.api_base}/v2/transfers")
+    stub_request(:post, "#{Frame.api_base}/v2/transfers")
       .with { |req|
         key = req.headers["Idempotency-Key"]
         next false if key.nil? || key.empty?
@@ -27,7 +27,6 @@ class TestTransferV2 < Minitest::Test
         status: 200,
         headers: {"Content-Type" => "application/json"}
       )
-    stub
   end
 
   def test_create_transfer_v2_auto_idempotency_key
