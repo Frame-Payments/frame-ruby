@@ -223,6 +223,20 @@ class TestAccount < Minitest::Test
     assert_requested :post, "#{Frame.api_base}/v1/accounts/#{account_id}/kyc_prefill/confirm", times: 1
   end
 
+  def test_elect_payout_method
+    account_id = "acct_1234567890abcdef"
+
+    stub_api_request(
+      :post,
+      "/v1/accounts/#{account_id}/elect_payout_method",
+      "account.json"
+    )
+
+    account = Frame::Account.elect_payout_method(account_id, payment_method_id: "pm_123")
+    assert_equal account_id, account.id
+    assert_requested :post, "#{Frame.api_base}/v1/accounts/#{account_id}/elect_payout_method", times: 1
+  end
+
   def test_class_update_account
     account_id = "acct_1234567890abcdef"
 

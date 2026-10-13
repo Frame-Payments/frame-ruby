@@ -23,6 +23,7 @@ module Frame
       "promotion_code" => "PromotionCode",
       "discount" => "Discount",
       "transfer" => "Transfer",
+      "wallet" => "Wallet",
       "transfer_fee_plan" => "TransferFeePlan",
       "transfer_billing_agreement" => "TransferBillingAgreement",
       "list" => "ListObject"

@@ -1,0 +1,14 @@
+{
+  "id": "wal_123",
+  "name": "Default",
+  "status": "active",
+  "rejected_reason": null,
+  "metadata": {},
+  "object": "wallet",
+  "account_id": "acct_123",
+  "default": true,
+  "available": { "value": 0, "currency": "USD" },
+  "livemode": false,
+  "created": 1745107200,
+  "updated": 1745107200
+}

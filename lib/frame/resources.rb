@@ -53,6 +53,7 @@ require "frame/resources/payment_link_session"
 require "frame/resources/payout"
 require "frame/resources/transfer"
 require "frame/resources/transfer_v2"
+require "frame/resources/wallet"
 require "frame/resources/transfer_billing_agreement"
 require "frame/resources/transfer_fee_plan"
 

@@ -54,6 +54,10 @@ module Frame
       request_object(:post, "/v1/accounts/#{CGI.escape(id)}/unrestrict", {}, opts)
     end
 
+    def self.elect_payout_method(id, params = {}, opts = {})
+      request_object(:post, "/v1/accounts/#{CGI.escape(id)}/elect_payout_method", params, opts)
+    end
+
     def self.get_geo_compliance(id, opts = {})
       request_object(:get, "/v1/accounts/#{CGI.escape(id)}/geo_compliance", {}, opts)
     end
