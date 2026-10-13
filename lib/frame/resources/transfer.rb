@@ -28,5 +28,23 @@ module Frame
     def confirm(params = {}, opts = {})
       request_object(:post, "/v1/transfers/#{CGI.escape(self["id"])}/confirm", params, opts)
     end
+
+    def self.approve(id, params = {}, opts = {})
+      id = Util.normalize_id(id)
+      request_object(:post, "/v1/transfers/#{CGI.escape(id)}/approve", params, opts)
+    end
+
+    def approve(params = {}, opts = {})
+      request_object(:post, "/v1/transfers/#{CGI.escape(self["id"])}/approve", params, opts)
+    end
+
+    def self.fraud_decline(id, params = {}, opts = {})
+      id = Util.normalize_id(id)
+      request_object(:post, "/v1/transfers/#{CGI.escape(id)}/fraud_decline", params, opts)
+    end
+
+    def fraud_decline(params = {}, opts = {})
+      request_object(:post, "/v1/transfers/#{CGI.escape(self["id"])}/fraud_decline", params, opts)
+    end
   end
 end

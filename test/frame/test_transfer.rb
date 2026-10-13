@@ -72,4 +72,22 @@ class TestTransfer < Minitest::Test
     assert_equal transfer_id, confirmed.id
     assert_requested :post, "#{Frame.api_base}/v1/transfers/#{transfer_id}/confirm", times: 1
   end
+
+  def test_approve_transfer
+    transfer_id = "tr_1234567890abcdef"
+    stub_api_request(:post, "/v1/transfers/#{transfer_id}/approve", "transfer.json")
+
+    transfer = Frame::Transfer.approve(transfer_id, liability_acknowledged: true)
+    assert_equal transfer_id, transfer.id
+    assert_requested :post, "#{Frame.api_base}/v1/transfers/#{transfer_id}/approve", times: 1
+  end
+
+  def test_fraud_decline_transfer
+    transfer_id = "tr_1234567890abcdef"
+    stub_api_request(:post, "/v1/transfers/#{transfer_id}/fraud_decline", "transfer.json")
+
+    transfer = Frame::Transfer.fraud_decline(transfer_id, reason: "suspected_fraud")
+    assert_equal transfer_id, transfer.id
+    assert_requested :post, "#{Frame.api_base}/v1/transfers/#{transfer_id}/fraud_decline", times: 1
+  end
 end

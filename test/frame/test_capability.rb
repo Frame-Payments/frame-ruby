@@ -75,4 +75,32 @@ class TestCapability < Minitest::Test
 
     assert_requested :delete, "#{Frame.api_base}/v1/accounts/#{account_id}/capabilities/#{capability_name}", times: 1
   end
+
+  def test_request_capability_reaches_the_api
+    account_id = "acct_123"
+    stub_api_request(
+      :post,
+      "/v1/accounts/#{account_id}/capabilities",
+      "capability.json"
+    )
+
+    result = Frame::Capability.request(account_id, {capabilities: ["payments"]})
+    assert_equal "payments", result.name
+    assert_requested :post, "#{Frame.api_base}/v1/accounts/#{account_id}/capabilities", times: 1
+  end
+
+  def test_reactivate_capability
+    account_id = "acct_123"
+    capability_name = "payments"
+    stub_api_request(
+      :post,
+      "/v1/accounts/#{account_id}/capabilities/#{capability_name}/reactivate",
+      "capability.json"
+    )
+
+    result = Frame::Capability.reactivate(account_id, capability_name)
+    assert_equal "payments", result.name
+    assert_equal "capability", result.object
+    assert_requested :post, "#{Frame.api_base}/v1/accounts/#{account_id}/capabilities/#{capability_name}/reactivate", times: 1
+  end
 end
